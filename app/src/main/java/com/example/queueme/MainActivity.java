@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements
         btnRegister = (Button) findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener(this);
+        //
 
         mAuth = FirebaseAuth.getInstance();
 
