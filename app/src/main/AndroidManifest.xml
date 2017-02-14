@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddPerson" />
+        <activity android:name=".AddSubject" />
+        <activity android:name=".ChoosePerson"></activity>
     </application>
 
 </manifest>

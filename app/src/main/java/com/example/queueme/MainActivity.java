@@ -1,5 +1,6 @@
 package com.example.queueme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements
     private EditText etInputEmail;
     private EditText etInputPassword;
     private Button btnRegister;
+    private Button btnsave;
+    private Button btnpersons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,12 @@ public class MainActivity extends AppCompatActivity implements
         etInputEmail = (EditText) findViewById(R.id.etInputEmail);
         etInputPassword = (EditText) findViewById(R.id.etInputPassword);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnsave=(Button) findViewById(R.id.btnsave);
+        btnpersons=(Button) findViewById(R.id.btnpersons);
 
         btnRegister.setOnClickListener(this);
+        btnsave.setOnClickListener(this);
+        btnpersons.setOnClickListener(this);
         //
 
         mAuth = FirebaseAuth.getInstance();
@@ -91,6 +98,16 @@ public class MainActivity extends AppCompatActivity implements
                 });
 
     }
+
+    private void Switch(){
+        startActivity(new Intent(MainActivity.this, AddPerson.class));
+
+    }
+
+    private void Switch2(){
+        startActivity(new Intent(MainActivity.this, ChoosePerson.class));
+
+    }
     @Override
     public void onClick(View v) {
         if (v==btnRegister){
@@ -98,6 +115,12 @@ public class MainActivity extends AppCompatActivity implements
             Toast.makeText(MainActivity.this, R.string.auth_failed,
                     Toast.LENGTH_SHORT).show();
 
+        }
+        if (v==btnsave){
+            Switch();
+        }
+        if (v==btnpersons){
+            Switch2();
         }
     }
 }
