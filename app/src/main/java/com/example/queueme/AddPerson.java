@@ -53,7 +53,7 @@ public class AddPerson extends AppCompatActivity implements View.OnClickListener
         startActivity(new Intent(AddPerson.this, AddSubject.class));
 
     }
-
+//
 
     @Override
     public void onClick(View v) {
