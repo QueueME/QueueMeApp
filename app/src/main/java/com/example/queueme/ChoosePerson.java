@@ -1,8 +1,10 @@
 package com.example.queueme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,13 +17,13 @@ import java.util.ArrayList;
 
 public class ChoosePerson extends AppCompatActivity {
 
-    private ListView l;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_person);
 
-        l=(ListView) findViewById(R.id.listview);
+       final ListView l=(ListView) findViewById(R.id.listview);
 
         final ArrayList<Person> persons = new ArrayList<Person>();
 
@@ -44,6 +46,40 @@ public class ChoosePerson extends AppCompatActivity {
 
 
                 }
+                //Make arrayadapter t show our result
+                //final ArrayAdapter<Person> personadapter = new ArrayAdapter<Person>(ChoosePerson.this, android.R.layout.simple_list_item_1,persons);
+
+                //set the person list in the fragment
+                //l.setAdapter(personadapter);
+                FeedAdapter feedAdapter =new FeedAdapter(ChoosePerson.this,R.layout.list_person, persons);
+                l.setAdapter(feedAdapter);
+                l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Person person = (Person) persons.get(position);
+                        Intent moveToDetailIntent = new Intent(ChoosePerson.this, DetailedActivity.class);
+                        // moveToDetailIntent.putExtra("bkjb", );
+                        String name= person.getName().toString();
+                        String email = person.getEmail().toString();
+                        ArrayList<Person> list = person.getPersons();
+
+
+                        moveToDetailIntent.putExtra("name",name);
+                        moveToDetailIntent.putExtra("list",list);
+
+                        //startActivityForResult(moveToDetailIntent,position);
+                        Person Anders = new Person();
+                        Anders.setName("nonneanders");
+                        person.getPersons().add(Anders);
+                        startActivity(moveToDetailIntent);
+                    }
+                });
+
+
+
+
+
+
             }
 
             @Override
@@ -52,11 +88,31 @@ public class ChoosePerson extends AppCompatActivity {
             }
         });
 
-        //Make arrayadapter t show our result
-        ArrayAdapter<Person> personadapter = new ArrayAdapter<Person>(getApplication(),android.R.layout.simple_list_item_1,persons);
 
-        //set the person list in the fragment
-        l.setAdapter(personadapter);
 
     }
+
+   /* @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Person person = (Person) parent.getItemAtPosition(position);
+        Intent moveToDetailIntent = new Intent(this, DetailedActivity.class);
+        // moveToDetailIntent.putExtra("bkjb", );
+        String name= person.getName().toString();
+        String email = person.getEmail().toString();
+
+        moveToDetailIntent.putExtra("name",name);
+
+        //startActivityForResult(moveToDetailIntent,position);
+
+
+        startActivity(moveToDetailIntent);
+
+
+
+
+
+
+            }
+*/
 }

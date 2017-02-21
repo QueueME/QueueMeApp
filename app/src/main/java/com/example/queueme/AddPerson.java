@@ -21,7 +21,7 @@ public class AddPerson extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subject);
+        setContentView(R.layout.activity_addperson);
 
         email=(EditText) findViewById(R.id.email);
         name =(EditText) findViewById(R.id.name);
@@ -45,15 +45,18 @@ public class AddPerson extends AppCompatActivity implements View.OnClickListener
         person.setEmail(email.getText().toString());
         person.setName(name.getText().toString());
 
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        //
         myRef.child("Person").push().setValue(person);
+        myRef.child("Person").child("list").setValue(person.getPersons());
     }
     private void Switch(){
         startActivity(new Intent(AddPerson.this, AddSubject.class));
 
     }
-
+//
 
     @Override
     public void onClick(View v) {
