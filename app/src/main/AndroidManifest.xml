@@ -21,6 +21,10 @@
         <activity
             android:name=".DetailedActivity"
             android:label="@string/title_activity_detailed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StudOrAss"
+            android:label="@string/title_activity_stud_or_ass"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

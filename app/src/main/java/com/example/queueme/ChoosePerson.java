@@ -32,7 +32,7 @@ public class ChoosePerson extends AppCompatActivity {
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+        final DatabaseReference myRef = database.getReference();
         myRef.child("Person").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -63,17 +63,23 @@ public class ChoosePerson extends AppCompatActivity {
                         // moveToDetailIntent.putExtra("bkjb", );
                         String name= person.getName().toString();
                         String email = person.getEmail().toString();
-                       // ArrayList<Person> list = person.getPersons();
+
+
 
 
                         moveToDetailIntent.putExtra("name",name);
                         moveToDetailIntent.putExtra("email",email);
+
 
                         //startActivityForResult(moveToDetailIntent,position);
                         //Person Anders = new Person();
                         //Anders.setName("nonneanders");
                         //person.getPersons().add(Anders);
                         startActivity(moveToDetailIntent);
+
+
+
+
                     }
                 });
 

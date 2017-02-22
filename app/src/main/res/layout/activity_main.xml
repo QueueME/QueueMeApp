@@ -51,16 +51,6 @@
         android:id="@+id/btnRegister" />
 
     <Button
-        android:text="Add person"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRegister"
-        android:layout_alignLeft="@+id/btnRegister"
-        android:layout_alignStart="@+id/btnRegister"
-        android:layout_marginTop="22dp"
-        android:id="@+id/btnsave" />
-
-    <Button
         android:text="Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,4 +60,14 @@
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:id="@+id/btnpersons" />
+
+    <Button
+        android:text="Add person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnsave"
+        android:layout_below="@+id/btnRegister"
+        android:layout_alignLeft="@+id/btnRegister"
+        android:layout_alignStart="@+id/btnRegister" />
 </RelativeLayout>
