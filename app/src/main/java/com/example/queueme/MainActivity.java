@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements
     private Button btnRegister;
     private Button btnsave;
     private Button btnpersons;
+    private Button addfag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,12 @@ public class MainActivity extends AppCompatActivity implements
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnsave=(Button) findViewById(R.id.btnsave);
         btnpersons=(Button) findViewById(R.id.btnpersons);
+        addfag=(Button) findViewById(R.id.addfag);
 
         btnRegister.setOnClickListener(this);
         btnsave.setOnClickListener(this);
         btnpersons.setOnClickListener(this);
+        addfag.setOnClickListener(this);
         //
 
         mAuth = FirebaseAuth.getInstance();
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void Switch(){
-        startActivity(new Intent(MainActivity.this, AddPerson.class));
+        startActivity(new Intent(MainActivity.this, StudOrAss.class));
 
     }
 
@@ -122,5 +125,9 @@ public class MainActivity extends AppCompatActivity implements
         if (v==btnpersons){
             Switch2();
         }
+        if (v==addfag){
+            startActivity(new Intent(MainActivity.this, AddSubject.class));
+        }
+
     }
 }

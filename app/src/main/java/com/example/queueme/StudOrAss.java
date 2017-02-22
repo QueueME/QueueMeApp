@@ -1,29 +1,37 @@
 package com.example.queueme;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
-public class StudOrAss extends AppCompatActivity {
+public class StudOrAss extends AppCompatActivity implements View.OnClickListener{
+
+    private Button btnass;
+    private Button btnstud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stud_or_ass);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        btnass=(Button) findViewById(R.id.btnass);
+        btnstud=(Button) findViewById(R.id.btnstud);
+
+        btnass.setOnClickListener(this);
+        btnstud.setOnClickListener(this);
+
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v==btnass){
+            startActivity(new Intent(StudOrAss.this, CooseSubjectAss.class));
+        }
+        if (v==btnstud){
+
+        }
+
+    }
 }
