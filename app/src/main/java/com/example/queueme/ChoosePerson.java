@@ -45,7 +45,9 @@ public class ChoosePerson extends AppCompatActivity {
                     persons.add(person);
 
 
+
                 }
+
                 //Make arrayadapter t show our result
                 //final ArrayAdapter<Person> personadapter = new ArrayAdapter<Person>(ChoosePerson.this, android.R.layout.simple_list_item_1,persons);
 
@@ -61,16 +63,16 @@ public class ChoosePerson extends AppCompatActivity {
                         // moveToDetailIntent.putExtra("bkjb", );
                         String name= person.getName().toString();
                         String email = person.getEmail().toString();
-                        ArrayList<Person> list = person.getPersons();
+                       // ArrayList<Person> list = person.getPersons();
 
 
                         moveToDetailIntent.putExtra("name",name);
-                        moveToDetailIntent.putExtra("list",list);
+                        moveToDetailIntent.putExtra("email",email);
 
                         //startActivityForResult(moveToDetailIntent,position);
-                        Person Anders = new Person();
-                        Anders.setName("nonneanders");
-                        person.getPersons().add(Anders);
+                        //Person Anders = new Person();
+                        //Anders.setName("nonneanders");
+                        //person.getPersons().add(Anders);
                         startActivity(moveToDetailIntent);
                     }
                 });
