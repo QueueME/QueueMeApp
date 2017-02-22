@@ -5,19 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class DetailedActivity extends AppCompatActivity implements View.OnClickListener{
     private String email;
-    private int queuenr;
+    private String emnekode;
+    private String emnenavn;
+
+    //private int queuenr;
     //private TextView antall;
     private Button queue;
     @Override
@@ -38,6 +37,8 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
         String name = intent.getStringExtra("name");
         email = intent.getStringExtra("email");
+        emnenavn =intent.getStringExtra("emnenavn");
+        emnekode = intent.getStringExtra("emnekode");
 
 
         //ArrayList<Person> lists = (ArrayList<Person>) intent.getSerializableExtra("list");
@@ -45,10 +46,10 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         //TextView queuenr = (TextView) findViewById(queunr);
         //queuenr.setText("Du er nr " + lists.indexOf("Anders"));
 
-        TextView email2 = (TextView) findViewById(R.id.email);
+       /* TextView email2 = (TextView) findViewById(R.id.email);
         email2.setText(email);
         TextView name2 = (TextView) findViewById(R.id.name);
-        name2.setText(name+queuenr);
+        name2.setText(name+);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -77,18 +78,21 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
             }
         });
         //antall.setText("Det er " + personsInLine.size()+ "i Kø");
-
+*/
     }
 
     private void QueueMe(){
+
+        //Queuer student til studass
         Person magnus = new Person();
         magnus.setEmail("Mgnus10@gmail.com");
         magnus.setName("magnus");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Person");
-        myRef.child(email).child("List").push().setValue(magnus);
-        //kræsjer når jeg kjører child(magnus.getEmail()) istedenfor push
+        DatabaseReference myRef = database.getReference();
+        myRef.child("Subject").child(emnekode).child("StudAssList").child(email).child("faenihelvete").setValue(magnus);
+        //kræsjer når jeg kjører child(magnus.getEmail()) istedenfor push får ikke referer til personene vi har lagt til hos studass heller pga har samme problem
+        //med de også. Skriver vi feks "hei" istedenfor email som ID finner vi fint frem og alt funker.
     }
 
 

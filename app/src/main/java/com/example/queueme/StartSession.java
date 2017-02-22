@@ -15,7 +15,8 @@ import java.util.ArrayList;
 public class StartSession extends AppCompatActivity implements View.OnClickListener {
 
     private String emnekode;
-    private int queuenr;
+    //private int queuenr;
+
     //private TextView antall;
     private Button queue;
     @Override
@@ -83,9 +84,10 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         magnus.setEmail("Mgnus10@gmail.com");
         magnus.setName("magnus");
 
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");
-        myRef.child(emnekode).child("StudAssList").push().setValue(magnus);
+        myRef.child(emnekode).child("StudAssList").child(magnus.getEmail()).setValue(magnus);
         //kræsjer når jeg kjører child(magnus.getEmail()) istedenfor push
     }
 

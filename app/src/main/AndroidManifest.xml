@@ -28,7 +28,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CooseSubjectAss" />
         <activity android:name=".FeedAdapterSubject" />
-        <activity android:name=".StartSession"></activity>
+        <activity android:name=".StartSession" />
+        <activity android:name=".ChooseSubjectStud"></activity>
     </application>
 
 </manifest>

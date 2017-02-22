@@ -51,7 +51,6 @@
         android:id="@+id/btnRegister" />
 
     <Button
-        android:text="Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/btnsave"
@@ -59,7 +58,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:id="@+id/btnpersons" />
+        android:id="@+id/btnpersons"
+        android:text="Add fag" />
 
     <Button
         android:text="CONTINUE"

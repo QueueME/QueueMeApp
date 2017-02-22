@@ -30,7 +30,7 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
             startActivity(new Intent(StudOrAss.this, CooseSubjectAss.class));
         }
         if (v==btnstud){
-
+            startActivity(new Intent(StudOrAss.this, ChooseSubjectStud.class));
         }
 
     }

@@ -86,6 +86,13 @@ public class MainActivity extends AppCompatActivity implements
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            finish();
+                            startActivity(new Intent(MainActivity.this, StudOrAss.class));
+                            Toast.makeText(MainActivity.this, "Register seccessfukll",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                         // If sign in fails, display a message to the user. If sign in succeeds
@@ -108,15 +115,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void Switch2(){
-        startActivity(new Intent(MainActivity.this, ChoosePerson.class));
+        startActivity(new Intent(MainActivity.this, AddPerson.class));
 
     }
     @Override
     public void onClick(View v) {
         if (v==btnRegister){
             createAccount(etInputEmail.getText().toString(), etInputPassword.getText().toString());
-            Toast.makeText(MainActivity.this, R.string.auth_failed,
-                    Toast.LENGTH_SHORT).show();
+
 
         }
         if (v==btnsave){
