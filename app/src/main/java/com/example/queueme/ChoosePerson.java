@@ -66,14 +66,16 @@ public class ChoosePerson extends AppCompatActivity {
                         Person person = (Person) persons.get(position);
                         Intent moveToDetailIntent = new Intent(ChoosePerson.this, DetailedActivity.class);
                         // moveToDetailIntent.putExtra("bkjb", );
-                        String name= person.getName().toString();
+
                         String email = person.getEmail().toString();
+                        String uid = person.getUid().toString();
 
 
 
 
-                        moveToDetailIntent.putExtra("name",name);
+
                         moveToDetailIntent.putExtra("email",email);
+                        moveToDetailIntent.putExtra("uid",uid);
                         moveToDetailIntent.putExtra("emnekode",emnekode);
                         moveToDetailIntent.putExtra("emnenavn",emnenavn);
 

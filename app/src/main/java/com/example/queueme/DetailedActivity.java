@@ -1,11 +1,14 @@
 package com.example.queueme;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -13,6 +16,7 @@ import java.util.ArrayList;
 
 public class DetailedActivity extends AppCompatActivity implements View.OnClickListener{
     private String email;
+    private String personuid;
     private String emnekode;
     private String emnenavn;
 
@@ -35,8 +39,9 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
 
-        String name = intent.getStringExtra("name");
+
         email = intent.getStringExtra("email");
+        personuid=intent.getStringExtra("uid");
         emnenavn =intent.getStringExtra("emnenavn");
         emnekode = intent.getStringExtra("emnekode");
 
@@ -82,17 +87,28 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void QueueMe(){
+        String email="";
+        String uid="";
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
 
-        //Queuer student til studass
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            uid = user.getUid();
+        }
         Person magnus = new Person();
-        magnus.setEmail("Mgnus10@gmail.com");
-        magnus.setName("magnus");
+        magnus.setUid(uid);
+        magnus.setEmail(email);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-        myRef.child("Subject").child(emnekode).child("StudAssList").child(email).child("faenihelvete").setValue(magnus);
-        //kræsjer når jeg kjører child(magnus.getEmail()) istedenfor push får ikke referer til personene vi har lagt til hos studass heller pga har samme problem
-        //med de også. Skriver vi feks "hei" istedenfor email som ID finner vi fint frem og alt funker.
+        myRef.child("Subject").child(emnekode).child("StudAssList").child(personuid).child("Queue").child(uid).setValue(user);
+////
     }
 
 

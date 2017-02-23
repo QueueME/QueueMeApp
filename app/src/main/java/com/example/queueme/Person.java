@@ -9,6 +9,9 @@ import java.util.ArrayList;
 public class Person {
     private String name;
     private String email;
+    private String uid;
+
+
 
 
     ArrayList<Person> persons = new ArrayList<Person>();
@@ -17,6 +20,14 @@ public class Person {
 
     public void Person(){
 
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {
