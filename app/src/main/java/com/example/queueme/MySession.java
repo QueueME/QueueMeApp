@@ -73,7 +73,7 @@ public class MySession extends AppCompatActivity {
         });
 
         TextView person = (TextView) findViewById(R.id.person);
-        //person.setText(students.get(1).getEmail());
+        person.setText("oiohoh");
     }
 
 
