@@ -1,10 +1,11 @@
 package com.example.queueme;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,30 +16,25 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ChoosePerson extends AppCompatActivity {
-
-    private String emnekode;
-    private String emnenavn;
+public class CooseSubjectAss extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_person);
+        setContentView(R.layout.activity_coose_subject_ass);
 
-       final ListView l=(ListView) findViewById(R.id.listview);
 
-        final ArrayList<Person> persons = new ArrayList<Person>();
+        final ListView l=(ListView) findViewById(R.id.listview);
 
-        Intent intent = getIntent();
+        final ArrayList<Subject> subjects = new ArrayList<Subject>();
 
-        emnenavn = intent.getStringExtra("emnenavn");
-        emnekode  = intent.getStringExtra("emnekode");
+
 
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
-        myRef.child("Subject").child(emnekode).child("StudAssList").addValueEventListener(new ValueEventListener() {
+        myRef.child("Subject").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get all of the children of this level.
@@ -46,8 +42,8 @@ public class ChoosePerson extends AppCompatActivity {
 
                 //shake hands with each of them
                 for (DataSnapshot child: children){
-                    Person person = child.getValue(Person.class);
-                    persons.add(person);
+                    Subject subject = child.getValue(Subject.class);
+                    subjects.add(subject);
 
 
 
@@ -58,24 +54,21 @@ public class ChoosePerson extends AppCompatActivity {
 
                 //set the person list in the fragment
                 //l.setAdapter(personadapter);
-                FeedAdapter feedAdapter =new FeedAdapter(ChoosePerson.this,R.layout.list_person, persons);
+
+                ArrayAdapter feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
                 l.setAdapter(feedAdapter);
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Person person = (Person) persons.get(position);
-                        Intent moveToDetailIntent = new Intent(ChoosePerson.this, DetailedActivity.class);
+                        Subject subject = (Subject) subjects.get(position);
+                        Intent moveToDetailIntent = new Intent(CooseSubjectAss.this, StartSession.class);
                         // moveToDetailIntent.putExtra("bkjb", );
-
-                        String email = person.getEmail().toString();
-                        String uid = person.getUid().toString();
-
+                        String emnekode= subject.getEmnekode();
+                        String emnenavn = subject.getEmnenavn();
 
 
 
 
-                        moveToDetailIntent.putExtra("email",email);
-                        moveToDetailIntent.putExtra("uid",uid);
                         moveToDetailIntent.putExtra("emnekode",emnekode);
                         moveToDetailIntent.putExtra("emnenavn",emnenavn);
 
@@ -108,28 +101,4 @@ public class ChoosePerson extends AppCompatActivity {
 
 
     }
-
-   /* @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Person person = (Person) parent.getItemAtPosition(position);
-        Intent moveToDetailIntent = new Intent(this, DetailedActivity.class);
-        // moveToDetailIntent.putExtra("bkjb", );
-        String name= person.getName().toString();
-        String email = person.getEmail().toString();
-
-        moveToDetailIntent.putExtra("name",name);
-
-        //startActivityForResult(moveToDetailIntent,position);
-
-
-        startActivity(moveToDetailIntent);
-
-
-
-
-
-
-            }
-*/
 }

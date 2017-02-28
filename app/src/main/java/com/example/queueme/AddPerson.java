@@ -47,9 +47,31 @@ public class AddPerson extends AppCompatActivity implements View.OnClickListener
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
+        DatabaseReference myRef = database.getReference("Person");
+        myRef.child(email.getText().toString()).setValue(person);
+        //String key = myRef.push().getKey();
+        //myRef.child(email.getText().toString()).child("List").push().setValue(person);
+
+
+
+         //myRef.child("Person").push().setValue(person);
+
         //
-        myRef.child("Person").push().setValue(person);
+       /* myRef.child("Person").orderByChild("email").equalTo("akampenes@gmail.com").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getKey();
+                myRef.child(key).push().setValue(person);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        */
+
+
         //myRef.child("Person").child("list").setValue(person.getPersons());
     }
     private void Switch(){

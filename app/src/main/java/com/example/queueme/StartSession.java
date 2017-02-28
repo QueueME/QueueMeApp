@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,35 +15,32 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class DetailedActivity extends AppCompatActivity implements View.OnClickListener{
-    private String email;
-    private String personuid;
-    private String emnekode;
-    private String emnenavn;
+import static com.example.queueme.R.id.emnenavn;
 
+public class StartSession extends AppCompatActivity implements View.OnClickListener {
+
+    private String emnekode;
     //private int queuenr;
+
     //private TextView antall;
     private Button queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailed);
+        setContentView(R.layout.activity_start_session);
 
         //TextView antall=(TextView) findViewById(R.id.antall);
 
         queue = (Button) findViewById(R.id.queue);
         queue.setOnClickListener(this);
 
-        final ArrayList<Person> personsInLine = new ArrayList<Person>();
+        final ArrayList<Person> studass = new ArrayList<Person>();
 
 
 
         Intent intent = getIntent();
 
-
-        email = intent.getStringExtra("email");
-        personuid=intent.getStringExtra("uid");
-        emnenavn =intent.getStringExtra("emnenavn");
+        String emnenavn = intent.getStringExtra("emnenavn");
         emnekode = intent.getStringExtra("emnekode");
 
 
@@ -51,15 +49,15 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         //TextView queuenr = (TextView) findViewById(queunr);
         //queuenr.setText("Du er nr " + lists.indexOf("Anders"));
 
-       /* TextView email2 = (TextView) findViewById(R.id.email);
-        email2.setText(email);
-        TextView name2 = (TextView) findViewById(R.id.name);
-        name2.setText(name+);
+        TextView emnekode1 = (TextView) findViewById(R.id.emnekode);
+        emnekode1.setText(emnekode);
+        TextView emnenavn1 = (TextView) findViewById(R.id.emnenavn);
+        emnenavn1.setText(emnenavn);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("Person");
-        ref.child(email).child("List").addValueEventListener(new ValueEventListener() {
+       /* FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("Subject");
+        ref.child(emnekode).child("StudAssList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //get all of the children of this level.
@@ -68,22 +66,22 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
                 //shake hands with each of them
                 for (DataSnapshot child: children){
                     Person person = child.getValue(Person.class);
-                    personsInLine.add(person);
+                    studass.add(person);
 
 
 
 
                 }
-                queuenr= personsInLine.size();
+                queuenr= studass.size();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
         //antall.setText("Det er " + personsInLine.size()+ "i Kø");
-*/
+
     }
 
     private void QueueMe(){
@@ -106,9 +104,14 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         magnus.setEmail(email);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-        myRef.child("Subject").child(emnekode).child("StudAssList").child(personuid).child("Queue").child(uid).setValue(user);
-////
+        DatabaseReference myRef = database.getReference("Subject");
+        myRef.child(emnekode).child("StudAssList").child(uid).setValue(user);
+        myRef.child("Subject").child(emnekode).child("StudAssList").child(uid).child("Queue").setValue("");
+
+        Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
+        moveToDetailIntent.putExtra("emnekode",emnekode);
+        moveToDetailIntent.putExtra("emnenavn",emnenavn);
+        startActivity(moveToDetailIntent);
     }
 
 

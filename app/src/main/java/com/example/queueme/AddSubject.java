@@ -39,7 +39,7 @@ public class AddSubject extends AppCompatActivity implements View.OnClickListene
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-        myRef.child("Subject").push().setValue(subject);
+        myRef.child("Subject").child(subject.getEmnekode()).setValue(subject);
     }
 
     @Override

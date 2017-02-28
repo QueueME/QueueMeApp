@@ -7,7 +7,7 @@ package com.example.queueme;
 public class Subject {
     private String emnekode;
     private String emnenavn;
-    
+
     private void Subject(){
 
     }
@@ -26,5 +26,13 @@ public class Subject {
 
     public void setEmnekode(String emnekode) {
         this.emnekode = emnekode;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "emnekode='" + emnekode + '\'' +
+                ", emnenavn='" + emnenavn + '\'' +
+                '}';
     }
 }

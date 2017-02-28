@@ -42,7 +42,7 @@
         android:text="Password" />
 
     <Button
-        android:text="Button"
+        android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etInputPassword"
@@ -51,17 +51,6 @@
         android:id="@+id/btnRegister" />
 
     <Button
-        android:text="Add person"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRegister"
-        android:layout_alignLeft="@+id/btnRegister"
-        android:layout_alignStart="@+id/btnRegister"
-        android:layout_marginTop="22dp"
-        android:id="@+id/btnsave" />
-
-    <Button
-        android:text="Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/btnsave"
@@ -69,5 +58,27 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:id="@+id/btnpersons" />
+        android:id="@+id/btnpersons"
+        android:text="Add fag" />
+
+    <Button
+        android:text="CONTINUE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnsave"
+        android:layout_below="@+id/btnRegister"
+        android:layout_alignLeft="@+id/btnRegister"
+        android:layout_alignStart="@+id/btnRegister" />
+
+    <Button
+        android:text="Add fag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnsave"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/addfag" />
 </RelativeLayout>
