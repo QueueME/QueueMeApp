@@ -106,12 +106,13 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");
         myRef.child(emnekode).child("StudAssList").child(uid).setValue(user);
-        myRef.child("Subject").child(emnekode).child("StudAssList").child(uid).child("Queue").setValue("");
+        myRef.child(emnekode).child("StudAssList").child(uid).child("Queue");
 
         Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
         moveToDetailIntent.putExtra("emnekode",emnekode);
         moveToDetailIntent.putExtra("emnenavn",emnenavn);
         startActivity(moveToDetailIntent);
+
     }
 
 
