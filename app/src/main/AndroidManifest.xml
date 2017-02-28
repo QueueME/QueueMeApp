@@ -29,7 +29,8 @@
         <activity android:name=".CooseSubjectAss" />
         <activity android:name=".FeedAdapterSubject" />
         <activity android:name=".StartSession" />
-        <activity android:name=".ChooseSubjectStud"></activity>
+        <activity android:name=".ChooseSubjectStud" />
+        <activity android:name=".MySession"></activity>
     </application>
 
 </manifest>

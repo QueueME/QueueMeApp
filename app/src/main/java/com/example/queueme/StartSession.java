@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import static com.example.queueme.R.id.emnenavn;
+
 public class StartSession extends AppCompatActivity implements View.OnClickListener {
 
     private String emnekode;
@@ -104,6 +106,12 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");
         myRef.child(emnekode).child("StudAssList").child(uid).setValue(user);
+        myRef.child("Subject").child(emnekode).child("StudAssList").child(uid).child("Queue").setValue("");
+
+        Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
+        moveToDetailIntent.putExtra("emnekode",emnekode);
+        moveToDetailIntent.putExtra("emnenavn",emnenavn);
+        startActivity(moveToDetailIntent);
     }
 
 
