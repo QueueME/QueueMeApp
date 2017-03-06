@@ -23,15 +23,15 @@ public class CooseSubjectAss extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coose_subject_ass);
 
-
+        //finer listview og setter som variabel
         final ListView l=(ListView) findViewById(R.id.listview);
-
+        //lager listen alle fagene skal legger i
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
 
 
 
 
-
+        //henter ut alle subjects som ligger i databasen og legger i liste
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         myRef.child("Subject").addValueEventListener(new ValueEventListener() {
@@ -49,14 +49,11 @@ public class CooseSubjectAss extends AppCompatActivity {
 
                 }
 
-                //Make arrayadapter t show our result
-                //final ArrayAdapter<Person> personadapter = new ArrayAdapter<Person>(ChoosePerson.this, android.R.layout.simple_list_item_1,persons);
-
-                //set the person list in the fragment
-                //l.setAdapter(personadapter);
+                //lager arrayadapter som viser listene
 
                 ArrayAdapter feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
                 l.setAdapter(feedAdapter);
+                //lager funkjsonen når man trykker på en av knappene i listviewen
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -73,10 +70,6 @@ public class CooseSubjectAss extends AppCompatActivity {
                         moveToDetailIntent.putExtra("emnenavn",emnenavn);
 
 
-                        //startActivityForResult(moveToDetailIntent,position);
-                        //Person Anders = new Person();
-                        //Anders.setName("nonneanders");
-                        //person.getPersons().add(Anders);
                         startActivity(moveToDetailIntent);
 
 

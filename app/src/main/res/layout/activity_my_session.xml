@@ -38,13 +38,22 @@
         android:id="@+id/nr" />
 
     <Button
-        android:text="Button"
+        android:text="Add fictisious person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="69dp"
+        android:id="@+id/update"
         android:layout_above="@+id/person"
-        android:layout_alignRight="@+id/text"
-        android:layout_alignEnd="@+id/text"
-        android:layout_marginBottom="74dp"
-        android:id="@+id/update" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Your session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/textView4"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

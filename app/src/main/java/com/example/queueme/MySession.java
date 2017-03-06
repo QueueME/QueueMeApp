@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
         emnekode = intent.getStringExtra("emnekode");
 
         final TextView nr= (TextView)findViewById(R.id.nr);
-        final TextView person = (TextView) findViewById(R.id.person);
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -60,43 +61,42 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
 
         final ArrayList<Person> students = new ArrayList<Person>();
         this.students=students;
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");
-       /* myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //get all of the children of this level.
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-
-                //shake hands with each of them
-                for (DataSnapshot child: children){
-                    //FirebaseUser person = child.getValue(FirebaseUser.class);
-                    Person person = child.getValue(Person.class);
-                    students.add(person);
-
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
+       //lager funskjoner når endring under denne referansen skjer
         myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //henter data og legger til personen som addes til listen over
                 fetchData(dataSnapshot);
+                //setter tekst i textviewene
                 int studentsnr= students.size();
                 nr.setText("the line has "+String.valueOf(studentsnr));
 
                 if (!students.isEmpty()){
-                    String student= students.get(0).getEmail();
-                    person.setText(student + "are next in line");
+                    String uid= students.get(0).getUid();
+
+                    //finner navnet på første i kø i persondata i persondatabasen
+                    DatabaseReference personRef = database.getReference("Person");
+                    personRef.child(uid).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Person person = dataSnapshot.getValue(Person.class);
+                            String firstInLineName = person.getName();
+                            //oppdaterer texviewen
+                            TextView firstperson = (TextView) findViewById(R.id.person);
+                            firstperson.setText(firstInLineName + " are next in line");
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                 }else{
-                    person.setText("no one in line");
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText("no one in line");
                 }
 
             }
@@ -109,15 +109,19 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
+                //henter ut personene som slettes og sletter han fra listen
                 fetchDataDelete(dataSnapshot);
+                //oppdatere texviewene
                 int studentsnr= students.size();
                 nr.setText("the line has "+String.valueOf(studentsnr));
 
                 if (!students.isEmpty()){
                     String student= students.get(0).getEmail();
-                    person.setText(student + "are next in line");
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText(student + " are next in line");
                 }else{
-                    person.setText("no one in line");
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText("no one in line");
                 }
 
             }
@@ -157,11 +161,13 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
                     Toast.LENGTH_SHORT).show();
             Person anders = new Person();
             anders.setEmail("anders@nogneonw.no");
-            anders.setName("vrv");
+            anders.setName("Anders By Kampenes");
             anders.setUid("sfrdagf");
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Subject");
-            myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue(anders);
+            DatabaseReference personRef = database.getReference("Person");
+            personRef.child(anders.getUid()).setValue(anders);
+            myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").child(anders.getUid()).setValue(anders);
 
 
         }
