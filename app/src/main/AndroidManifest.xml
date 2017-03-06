@@ -30,7 +30,8 @@
         <activity android:name=".FeedAdapterSubject" />
         <activity android:name=".StartSession" />
         <activity android:name=".ChooseSubjectStud" />
-        <activity android:name=".MySession"></activity>
+        <activity android:name=".MySession" />
+        <activity android:name=".InQueue"></activity>
     </application>
 
 </manifest>

@@ -106,8 +106,8 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");
         myRef.child(emnekode).child("StudAssList").child(uid).setValue(user);
-        myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
-        myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
+        //myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
+        //myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
 
 
         Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);

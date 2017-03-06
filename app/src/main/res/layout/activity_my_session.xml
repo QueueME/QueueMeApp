@@ -17,4 +17,34 @@
         android:id="@+id/person"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Number in line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/text"
+        android:layout_below="@+id/person"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_alignLeft="@+id/person"
+        android:layout_alignStart="@+id/person"
+        android:layout_marginTop="15dp"
+        android:id="@+id/nr" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/person"
+        android:layout_alignRight="@+id/text"
+        android:layout_alignEnd="@+id/text"
+        android:layout_marginBottom="74dp"
+        android:id="@+id/update" />
+
 </RelativeLayout>

@@ -116,6 +116,16 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         if (v==queue){
             QueueMe();
+
+            Intent moveToDetailIntent = new Intent(DetailedActivity.this, InQueue.class);
+
+
+            moveToDetailIntent.putExtra("email",email);
+            moveToDetailIntent.putExtra("uid",personuid);
+            moveToDetailIntent.putExtra("emnekode",emnekode);
+            moveToDetailIntent.putExtra("emnenavn",emnenavn);
+
+            startActivity(moveToDetailIntent);
         }
     }
 }
