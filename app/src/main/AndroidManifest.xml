@@ -31,7 +31,8 @@
         <activity android:name=".StartSession" />
         <activity android:name=".ChooseSubjectStud" />
         <activity android:name=".MySession" />
-        <activity android:name=".InQueue"></activity>
+        <activity android:name=".InQueue" />
+        <activity android:name=".MySessionSwipe"></activity>
     </application>
 
 </manifest>

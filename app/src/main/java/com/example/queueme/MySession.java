@@ -27,6 +27,7 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
     private Button update;
     ArrayList students;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -137,9 +138,7 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
             }
         });
 
-        //lager svipefunction
 
-        
 
     }
     private void fetchData(DataSnapshot dataSnapshot)
