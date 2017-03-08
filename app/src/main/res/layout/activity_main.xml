@@ -81,4 +81,16 @@
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:id="@+id/addfag" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_above="@+id/etInputPassword"
+        android:layout_alignLeft="@+id/etInputPassword"
+        android:layout_alignStart="@+id/etInputPassword"
+        android:layout_marginBottom="42dp"
+        android:id="@+id/etInputName"
+        android:text="Name" />
 </RelativeLayout>

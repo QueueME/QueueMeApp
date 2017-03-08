@@ -26,11 +26,16 @@
             android:name=".StudOrAss"
             android:label="@string/title_activity_stud_or_ass"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CooseSubjectAss" />
+        <activity
+            android:name=".CooseSubjectAss"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".FeedAdapterSubject" />
         <activity android:name=".StartSession" />
         <activity android:name=".ChooseSubjectStud" />
-        <activity android:name=".MySession"></activity>
+        <activity android:name=".MySession" />
+        <activity android:name=".InQueue" />
+        <activity android:name=".MySessionSwipe" />
+        <activity android:name=".Searchtest"></activity>
     </application>
 
 </manifest>
