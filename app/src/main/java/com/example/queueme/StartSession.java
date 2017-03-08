@@ -1,7 +1,6 @@
 package com.example.queueme;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,77 +27,34 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_session);
-
-        //TextView antall=(TextView) findViewById(R.id.antall);
-
-        queue = (Button) findViewById(R.id.queue);
-        queue.setOnClickListener(this);
-
+        //henter brukerens info
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //lager liste
         final ArrayList<Person> studass = new ArrayList<Person>();
-
-
-
+        //henter info fra forrige side
         Intent intent = getIntent();
-
         String emnenavn = intent.getStringExtra("emnenavn");
         emnekode = intent.getStringExtra("emnekode");
-
-
-        //ArrayList<Person> lists = (ArrayList<Person>) intent.getSerializableExtra("list");
-
-        //TextView queuenr = (TextView) findViewById(queunr);
-        //queuenr.setText("Du er nr " + lists.indexOf("Anders"));
-
+        //finner knapper
+        queue = (Button) findViewById(R.id.queue);
+        queue.setOnClickListener(this);
+        //setter tekst
         TextView emnekode1 = (TextView) findViewById(R.id.emnekode);
         emnekode1.setText(emnekode);
         TextView emnenavn1 = (TextView) findViewById(R.id.emnenavn);
         emnenavn1.setText(emnenavn);
+        TextView enter = (TextView) findViewById(R.id.enter);
+        enter.setText("You'r about to enter "+ user.getEmail()+"s queue");
 
-
-       /* FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("Subject");
-        ref.child(emnekode).child("StudAssList").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //get all of the children of this level.
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-
-                //shake hands with each of them
-                for (DataSnapshot child: children){
-                    Person person = child.getValue(Person.class);
-                    studass.add(person);
-
-
-
-
-                }
-                queuenr= studass.size();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
-        //antall.setText("Det er " + personsInLine.size()+ "i Kø");
 
     }
 
     private void QueueMe(){
-        String email="";
-        String uid="";
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
 
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            uid = user.getUid();
-        }
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email=user.getEmail();
+        String uid=user.getUid();
+
         Person magnus = new Person();
         magnus.setUid(uid);
         magnus.setEmail(email);

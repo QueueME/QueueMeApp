@@ -32,7 +32,7 @@ public class ChooseSubjectStud extends AppCompatActivity {
 
 
 
-
+        //Henter ut fag fra databasen og legger dem i subject listen
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         myRef.child("Subject").addValueEventListener(new ValueEventListener() {
@@ -50,14 +50,10 @@ public class ChooseSubjectStud extends AppCompatActivity {
 
                 }
 
-                //Make arrayadapter t show our result
-                //final ArrayAdapter<Person> personadapter = new ArrayAdapter<Person>(ChoosePerson.this, android.R.layout.simple_list_item_1,persons);
-
-                //set the person list in the fragment
-                //l.setAdapter(personadapter);
-
+                //lager et adapter
                 ArrayAdapter feedAdapter = new ArrayAdapter(ChooseSubjectStud.this, android.R.layout.simple_list_item_1,subjects);
                 l.setAdapter(feedAdapter);
+                //definerer hva som skal skje når man trykker på en person
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

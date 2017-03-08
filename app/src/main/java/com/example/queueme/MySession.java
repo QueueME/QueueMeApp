@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,13 +22,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MySession extends AppCompatActivity implements View.OnClickListener{
+public class MySession extends AppCompatActivity implements View.OnClickListener,GestureDetector.OnGestureListener{
     private String emnenavn;
     private String emnekode;
     private String uid;
     private Button update;
-    ArrayList students;
+    private ArrayList<Person> students;
 
+    //til sviping ect
+    private GestureDetector detector;
+    private static final int SWIPE_THRESHOLD = 100;
+    private static final int SWIPE_VELOCITY_THRESHOLD = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +144,8 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        //swipe
+        detector = new GestureDetector(this,this);
 
 
     }
@@ -151,7 +159,8 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
     {
         //students.clear();
         Person person = dataSnapshot.getValue(Person.class);
-        students.remove(person);
+    //MÅ LEGGE TIL SLIK AT DENNE PERSONEN FJERNER SEG
+
     }
 
 
@@ -169,8 +178,79 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
             DatabaseReference personRef = database.getReference("Person");
             personRef.child(anders.getUid()).setValue(anders);
             myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").child(anders.getUid()).setValue(anders);
-
+            //startActivity(new Intent(MySession.this,MySessionSwipe.class));
 
         }
     }
+
+
+    //touchmetoder som lar oss swipe
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return detector.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+
+        float diffY = e2.getY() - e1.getY();
+        float diffX = e2.getX() - e1.getX();
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                if (diffX > 0) {
+                    return false;
+                } else {
+                    Toast.makeText(MySession.this, "SWIPED",
+                            Toast.LENGTH_SHORT).show();
+                    SvipeLeft();
+                    return true;
+                }
+
+            }
+        }
+        return true;
+    }
+
+    private void SvipeLeft(){
+        String studentuid = students.get(0).getUid();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Subject");
+        myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").child(studentuid).removeValue();
+        //sletter kun øverste STORT PROBLEM HVIS NOEN ANDRE GÅR UT AV KØEN FRIVILLIG
+        students.remove(0);
+
+
+    }
+
+
+
+
+
 }

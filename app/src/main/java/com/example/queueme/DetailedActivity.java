@@ -1,7 +1,6 @@
 package com.example.queueme;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -87,39 +86,26 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void QueueMe(){
-        String email="";
-        String uid="";
+        //henter ut info om brukeren
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
+        String email=user.getEmail();
+        String uid=user.getUid();
 
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            uid = user.getUid();
-        }
-        Person magnus = new Person();
-        magnus.setUid(uid);
-        magnus.setEmail(email);
-
+        //skriver til databse
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         myRef.child("Subject").child(emnekode).child("StudAssList").child(personuid).child("Queue").child(uid).setValue(user);
-////
+
     }
 
 
     @Override
     public void onClick(View v) {
         if (v==queue){
+            //kjører queueme
             QueueMe();
-
+            //går videre til neste aktivitet og tar med seg info
             Intent moveToDetailIntent = new Intent(DetailedActivity.this, InQueue.class);
-
-
             moveToDetailIntent.putExtra("email",email);
             moveToDetailIntent.putExtra("uid",personuid);
             moveToDetailIntent.putExtra("emnekode",emnekode);

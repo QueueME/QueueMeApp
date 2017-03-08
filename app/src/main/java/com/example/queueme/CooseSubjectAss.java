@@ -1,11 +1,14 @@
 package com.example.queueme;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,8 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class CooseSubjectAss extends AppCompatActivity {
 
+public class CooseSubjectAss extends Activity {
+    // Search EditText
+    private EditText inputSearch;
+    ArrayAdapter feedAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +34,7 @@ public class CooseSubjectAss extends AppCompatActivity {
         //lager listen alle fagene skal legger i
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
 
-
+        inputSearch = (EditText) findViewById(R.id.inputSearch);
 
 
         //henter ut alle subjects som ligger i databasen og legger i liste
@@ -51,10 +57,29 @@ public class CooseSubjectAss extends AppCompatActivity {
 
                 //lager arrayadapter som viser listene
 
-                ArrayAdapter feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
+                 feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
                 l.setAdapter(feedAdapter);
+                //definerer hva som skjer når man trykker på searchknappen
+                inputSearch.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        CooseSubjectAss.this.feedAdapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
                 //lager funkjsonen når man trykker på en av knappene i listviewen
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Subject subject = (Subject) subjects.get(position);

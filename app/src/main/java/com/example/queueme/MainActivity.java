@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void Switch2(){
-        startActivity(new Intent(MainActivity.this, AddPerson.class));
+        startActivity(new Intent(MainActivity.this, Searchtest.class));
 
     }
 
