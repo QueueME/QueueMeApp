@@ -24,18 +24,16 @@ public class ChoosePerson extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_person);
-
-       final ListView l=(ListView) findViewById(R.id.listview);
+        //finner listview
+        final ListView l=(ListView) findViewById(R.id.listview);
 
         final ArrayList<Person> persons = new ArrayList<Person>();
-
+        //henter ut info fra forrige side
         Intent intent = getIntent();
-
         emnenavn = intent.getStringExtra("emnenavn");
         emnekode  = intent.getStringExtra("emnekode");
 
-
-
+        //Henter ut perosnene fra databasen og legger dem i persons listen
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         myRef.child("Subject").child(emnekode).child("StudAssList").addValueEventListener(new ValueEventListener() {
@@ -52,14 +50,10 @@ public class ChoosePerson extends AppCompatActivity {
 
 
                 }
-
-                //Make arrayadapter t show our result
-                //final ArrayAdapter<Person> personadapter = new ArrayAdapter<Person>(ChoosePerson.this, android.R.layout.simple_list_item_1,persons);
-
-                //set the person list in the fragment
-                //l.setAdapter(personadapter);
+                //lager et adapter
                 FeedAdapter feedAdapter =new FeedAdapter(ChoosePerson.this,R.layout.list_person, persons);
                 l.setAdapter(feedAdapter);
+                //definerer hva som skal skje når man trykker på en person
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -109,27 +103,4 @@ public class ChoosePerson extends AppCompatActivity {
 
     }
 
-   /* @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Person person = (Person) parent.getItemAtPosition(position);
-        Intent moveToDetailIntent = new Intent(this, DetailedActivity.class);
-        // moveToDetailIntent.putExtra("bkjb", );
-        String name= person.getName().toString();
-        String email = person.getEmail().toString();
-
-        moveToDetailIntent.putExtra("name",name);
-
-        //startActivityForResult(moveToDetailIntent,position);
-
-
-        startActivity(moveToDetailIntent);
-
-
-
-
-
-
-            }
-*/
 }

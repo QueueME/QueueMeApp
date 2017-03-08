@@ -1,7 +1,6 @@
 package com.example.queueme;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,11 +18,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import javax.security.auth.Subject;
 
-public class CooseSubjectAss extends Activity {
+
+public class Searchtest extends Activity {
     // Search EditText
     private EditText inputSearch;
     ArrayAdapter feedAdapter;
+    ArrayAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,10 @@ public class CooseSubjectAss extends Activity {
         final ListView l=(ListView) findViewById(R.id.listview);
         //lager listen alle fagene skal legger i
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
+        final ArrayList<String> jalla = new ArrayList<>();
+        jalla.add("ONONNLKNOONOONONBO");
+        jalla.add("aaaaaa");
+        jalla.add("wwww");
 
         inputSearch = (EditText) findViewById(R.id.inputSearch);
 
@@ -57,9 +63,10 @@ public class CooseSubjectAss extends Activity {
 
                 //lager arrayadapter som viser listene
 
-                 feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
+                feedAdapter = new ArrayAdapter(Searchtest.this, android.R.layout.simple_list_item_1,subjects);
+                adapter = new ArrayAdapter(Searchtest.this, android.R.layout.simple_list_item_1,jalla);
                 l.setAdapter(feedAdapter);
-                //definerer hva som skjer når man trykker på searchknappen
+                //lager funkjsonen når man trykker på en av knappene i listviewen
                 inputSearch.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -68,34 +75,31 @@ public class CooseSubjectAss extends Activity {
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        CooseSubjectAss.this.feedAdapter.getFilter().filter(s);
+                        if (start==0){
+                            l.setAdapter(feedAdapter);
+                            Searchtest.this.feedAdapter.getFilter().filter(s);
+                        }else{
+                            l.setAdapter(adapter);
+                            Searchtest.this.adapter.getFilter().filter(s);
+                        }
+
+
+
+
                     }
 
                     @Override
                     public void afterTextChanged(Editable s) {
 
+
                     }
                 });
-                //lager funkjsonen når man trykker på en av knappene i listviewen
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Subject subject = (Subject) subjects.get(position);
-                        Intent moveToDetailIntent = new Intent(CooseSubjectAss.this, StartSession.class);
-                        // moveToDetailIntent.putExtra("bkjb", );
-                        String emnekode= subject.getEmnekode();
-                        String emnenavn = subject.getEmnenavn();
 
-
-
-
-                        moveToDetailIntent.putExtra("emnekode",emnekode);
-                        moveToDetailIntent.putExtra("emnenavn",emnenavn);
-
-
-                        startActivity(moveToDetailIntent);
 
 
 
