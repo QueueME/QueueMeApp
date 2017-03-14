@@ -30,9 +30,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject{" +
-                "emnekode='" + emnekode + '\'' +
-                ", emnenavn='" + emnenavn + '\'' +
-                '}';
+        return "" + emnekode +" "+ emnenavn;
     }
 }

@@ -17,4 +17,48 @@
         android:id="@+id/person"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Number in line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/text"
+        android:layout_below="@+id/person"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_alignLeft="@+id/person"
+        android:layout_alignStart="@+id/person"
+        android:layout_marginTop="15dp"
+        android:id="@+id/nr" />
+
+    <Button
+        android:text="Add fictisious person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="69dp"
+        android:id="@+id/update"
+        android:layout_above="@+id/person"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Your session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/textView4"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
 </RelativeLayout>

@@ -27,7 +27,7 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (v==btnass){
-            startActivity(new Intent(StudOrAss.this, CooseSubjectAss.class));
+            startActivity(new Intent(StudOrAss.this, ChooseSubjectAss.class));
         }
         if (v==btnstud){
             startActivity(new Intent(StudOrAss.this, ChooseSubjectStud.class));

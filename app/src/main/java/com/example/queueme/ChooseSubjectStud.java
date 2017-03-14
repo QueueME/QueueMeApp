@@ -1,11 +1,10 @@
 package com.example.queueme;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,11 +24,9 @@ public class ChooseSubjectStud extends AppCompatActivity {
         setContentView(R.layout.activity_choose_subject_stud);
 
 
-        final ListView l=(ListView) findViewById(R.id.listview);
+        final ListView l=(ListView) findViewById(R.id.listview_stud);
 
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
-
-
 
 
 
@@ -46,8 +43,6 @@ public class ChooseSubjectStud extends AppCompatActivity {
                     Subject subject = child.getValue(Subject.class);
                     subjects.add(subject);
 
-
-
                 }
 
                 //Make arrayadapter t show our result
@@ -56,8 +51,12 @@ public class ChooseSubjectStud extends AppCompatActivity {
                 //set the person list in the fragment
                 //l.setAdapter(personadapter);
 
-                ArrayAdapter feedAdapter = new ArrayAdapter(ChooseSubjectStud.this, android.R.layout.simple_list_item_1,subjects);
+                //ArrayAdapter feedAdapter = new ArrayAdapter(ChooseSubjectStud.this, android.R.layout.simple_list_item_1,subjects);
+                //l.setAdapter(feedAdapter);
+
+                FeedAdapeter_ChooseSubject feedAdapter = new FeedAdapeter_ChooseSubject(ChooseSubjectStud.this, R.layout.list_subjectitem_stud, subjects);
                 l.setAdapter(feedAdapter);
+
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -85,10 +84,6 @@ public class ChooseSubjectStud extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
 
 
             }
