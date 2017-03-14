@@ -6,8 +6,8 @@
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
-    <color name="bg_screen2">#20d2bb</color>
-    <color name="bg_screen3">#3395ff</color>
+    <color name="bg_screen2">#5eed6f</color>
+    <color name="bg_screen3">#2084f0</color>
     <color name="bg_screen4">#c873f4</color>
 
     <!-- dots inactive colors -->

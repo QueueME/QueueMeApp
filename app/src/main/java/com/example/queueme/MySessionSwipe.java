@@ -41,6 +41,7 @@ public class MySessionSwipe extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         final ArrayList<Person> persons= new ArrayList<>();
         //lager liste
         FirebaseDatabase database = FirebaseDatabase.getInstance();
