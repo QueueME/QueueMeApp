@@ -24,6 +24,8 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    //heihei
+
     @Override
     public void onClick(View v) {
         if (v==btnass){
