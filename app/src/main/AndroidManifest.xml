@@ -26,8 +26,7 @@
             android:name=".StudOrAss"
             android:label="@string/title_activity_stud_or_ass"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CooseSubjectAss" />
-        <activity android:name=".FeedAdapterSubject" />
+        <activity android:name=".ChooseSubjectAss" />
         <activity android:name=".StartSession" />
         <activity android:name=".ChooseSubjectStud" />
         <activity android:name=".MySession"></activity>

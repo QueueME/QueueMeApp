@@ -29,7 +29,7 @@ public class Searchtest extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coose_subject_ass);
+        setContentView(R.layout.activity_choose_subject_ass);
 
         //finer listview og setter som variabel
         final ListView l=(ListView) findViewById(R.id.listview);
