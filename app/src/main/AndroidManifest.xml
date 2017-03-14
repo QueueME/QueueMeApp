@@ -26,19 +26,11 @@
             android:name=".StudOrAss"
             android:label="@string/title_activity_stud_or_ass"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ChooseSubjectAss" />
-        <activity android:name=".FeedAdapter_ChooseSubject_Ass" />
+        <activity android:name=".CooseSubjectAss" />
+        <activity android:name=".FeedAdapterSubject" />
         <activity android:name=".StartSession" />
         <activity android:name=".ChooseSubjectStud" />
         <activity android:name=".MySession"></activity>
     </application>
-</manifest>
 
-    <!--
-          Hello,
-             I am a multi-line XML comment
-             <staticText>
-                <reportElement x="180" y="0" width="200" height="20"/>
-                <text><![CDATA[Hello World!]]></text>
-              </staticText>
-          -->
+</manifest>

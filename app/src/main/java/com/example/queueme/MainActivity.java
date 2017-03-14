@@ -1,6 +1,7 @@
 package com.example.queueme;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener {
@@ -22,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MainActivity";
-
+    //legger til brukernavn
+    private EditText etInputName;
     private EditText etInputEmail;
     private EditText etInputPassword;
     private Button btnRegister;
@@ -34,20 +38,22 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //finner edittekstene og binder de til variabler
         etInputEmail = (EditText) findViewById(R.id.etInputEmail);
         etInputPassword = (EditText) findViewById(R.id.etInputPassword);
+        etInputName=(EditText) findViewById(R.id.etInputName);
+        //finner knappene i layouten og binder de til variabler
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnsave=(Button) findViewById(R.id.btnsave);
         btnpersons=(Button) findViewById(R.id.btnpersons);
         addfag=(Button) findViewById(R.id.addfag);
-
+        //setter onclicklistener
         btnRegister.setOnClickListener(this);
         btnsave.setOnClickListener(this);
         btnpersons.setOnClickListener(this);
         addfag.setOnClickListener(this);
-        //
 
+        //nødvendig for å opprette bruker
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    //lager selve brukeren
     private void createAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -88,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             finish();
+                            createPersonFromUser(etInputName.getText().toString(), etInputEmail.getText().toString(), etInputPassword.getText().toString());
+                            Toast.makeText(MainActivity.this,"Created Person",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(MainActivity.this, StudOrAss.class));
                             Toast.makeText(MainActivity.this, "Register seccessfukll",
                                     Toast.LENGTH_SHORT).show();
@@ -115,9 +124,39 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void Switch2(){
-        startActivity(new Intent(MainActivity.this, AddPerson.class));
+        startActivity(new Intent(MainActivity.this, Searchtest.class));
 
     }
+
+    //lager en person i databasen med fulltnavn slik at vi kan bruke fullt navn senere
+    private void createPersonFromUser(String fullname, String email,String password){
+        String useruid="";
+        String useremail="";
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String username = user.getDisplayName();
+            useremail = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            useruid = user.getUid();
+        }
+
+        Person person =new Person();
+        person.setName(fullname);
+        person.setEmail(useremail);
+        person.setUid(useruid);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef= database.getReference("Person");
+        myRef.child(useruid).setValue(person);
+
+    }
+    //det som skal skje når knapper blir trykket
     @Override
     public void onClick(View v) {
         if (v==btnRegister){

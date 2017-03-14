@@ -41,4 +41,14 @@
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:layout_below="@+id/or"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Choose between"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:id="@+id/textView3"
+        android:textSize="30sp" />
 </RelativeLayout>
