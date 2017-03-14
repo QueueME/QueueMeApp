@@ -53,5 +53,3 @@ public class FeedAdapter_ChooseSubject_Ass extends ArrayAdapter {
         return view;
     }
 }
-
-//heihei
