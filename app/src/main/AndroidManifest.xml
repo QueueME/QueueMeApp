@@ -35,6 +35,9 @@
         <activity android:name=".MySession" />
         <activity android:name=".InQueue" />
         <activity android:name=".MySessionSwipe" />
+        <activity android:name=".PopSubject"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.CostumeTheme1"/>
         <activity android:name=".Searchtest"></activity>
     </application>
 
