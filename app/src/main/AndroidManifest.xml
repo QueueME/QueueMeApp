@@ -31,6 +31,4 @@
         <activity android:name=".ChooseSubjectStud" />
         <activity android:name=".MySession"></activity>
     </application>
-
 </manifest>
-
