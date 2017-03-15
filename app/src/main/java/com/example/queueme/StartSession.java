@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,15 +15,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import static com.example.queueme.R.id.emnenavn;
-
 public class StartSession extends AppCompatActivity implements View.OnClickListener {
 
     private String emnekode;
     //private int queuenr;
-
+    private String emnenavn;
     //private TextView antall;
     private Button queue;
+    private EditText time;
+    private String time_to_stop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,24 +34,26 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         final ArrayList<Person> studass = new ArrayList<Person>();
         //henter info fra forrige side
         Intent intent = getIntent();
-        String emnenavn = intent.getStringExtra("emnenavn");
+        emnenavn = intent.getStringExtra("emnenavn");
         emnekode = intent.getStringExtra("emnekode");
         //finner knapper
         queue = (Button) findViewById(R.id.queue);
         queue.setOnClickListener(this);
         //setter tekst
-        TextView emnekode1 = (TextView) findViewById(R.id.emnekode);
-        emnekode1.setText(emnekode);
-        TextView emnenavn1 = (TextView) findViewById(R.id.emnenavn);
-        emnenavn1.setText(emnenavn);
-        TextView enter = (TextView) findViewById(R.id.enter);
-        enter.setText("You'r about to enter "+ user.getEmail()+"s queue");
+        time = (EditText) findViewById(R.id.time_up_to);
+        TextView subject= (TextView) findViewById(R.id.subject);
+        subject.setText(emnekode +" "+ emnenavn);
+
+
+       // TextView enter = (TextView) findViewById(R.id.enter);
+        //enter.setText("You'r about to enter "+ user.getEmail()+"s queue");
 
 
     }
 
     private void QueueMe(){
 
+        time_to_stop= time.getText().toString();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail();
         String uid=user.getUid();
@@ -58,6 +61,7 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         Person magnus = new Person();
         magnus.setUid(uid);
         magnus.setEmail(email);
+        magnus.setTime_to_stop(time_to_stop);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");

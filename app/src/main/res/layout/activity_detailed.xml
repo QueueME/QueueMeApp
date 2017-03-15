@@ -1,59 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_in_queue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.example.queueme.DetailedActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.queueme.InQueue">
 
-    <include
-        layout="@layout/content_detailed"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_height="0dp"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/antall"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_width="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:text="You are about to enter a queue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/textView2"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <Button
+        android:text="QueueMe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/queue"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light"
+        android:background="@color/bg_screen3" />
+
+
+    <TextView
+        android:text="Studass availible until:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emne"
+        android:textSize="14sp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/mail"
+        android:layout_alignStart="@+id/mail" />
+
+    <TextView
+        android:text="Number of peaple in this line:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emneinfo"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/emne"
+        android:layout_alignLeft="@+id/emne"
+        android:layout_alignStart="@+id/emne" />
+
+    <TextView
+        android:id="@+id/mail"
+        android:text="Studass name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginBottom="33dp"
+        android:layout_above="@+id/emne"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <TextView
+        android:text="Subject info:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/imageView1"
+        android:layout_alignLeft="@+id/emne"
+        android:layout_alignStart="@+id/emne" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:src="@drawable/studass"
+        android:layout_gravity="center"
+        android:layout_height="100dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:id="@+id/email"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="58dp" />
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/emneinfo"
+        android:layout_toRightOf="@+id/emneinfo"
+        android:layout_toEndOf="@+id/emneinfo"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:id="@+id/count" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/avilible_until"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/count"
+        android:layout_alignStart="@+id/count" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subjectinfo"
+        android:layout_alignBaseline="@+id/textView13"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignLeft="@+id/avilible_until"
+        android:layout_alignStart="@+id/avilible_until" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name"
-        tools:layout_editor_absoluteX="155dp"
-        app:layout_constraintBottom_toBottomOf="@+id/antall"
-        app:layout_constraintTop_toTopOf="@+id/antall" />
+        android:layout_alignBaseline="@+id/mail"
+        android:layout_alignBottom="@+id/mail"
+        android:layout_alignLeft="@+id/subjectinfo"
+        android:layout_alignStart="@+id/subjectinfo" />
 
-    <Button
-        android:text="Add to queue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="359dp"
-        tools:layout_editor_absoluteX="145dp"
-        android:id="@+id/queue" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="239dp"
-        android:layout_height="106dp"
-        tools:layout_editor_absoluteY="139dp"
-        tools:layout_editor_absoluteX="145dp"
-        android:id="@+id/textView5" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

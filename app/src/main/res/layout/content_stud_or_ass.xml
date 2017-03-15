@@ -13,35 +13,6 @@
     tools:context="com.example.queueme.StudOrAss"
     tools:showIn="@layout/activity_stud_or_ass">
 
-    <Button
-        android:text="Student Assistant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="104dp"
-        android:id="@+id/btnass"
-        android:textColor="@color/common_google_signin_btn_text_dark_default" />
-
-    <TextView
-        android:text="OR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:id="@+id/or" />
-
-    <Button
-        android:text="Student"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:id="@+id/btnstud"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:layout_below="@+id/or"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:text="Choose between"
         android:layout_width="wrap_content"
@@ -50,5 +21,63 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
         android:id="@+id/textView3"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="@color/bg_screen3" />
+
+    <Button
+        android:text="Student Assistant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/btnass"
+        android:textColor="@color/bg_screen3"
+        android:background="@android:color/background_light"
+        android:layout_below="@+id/textView3"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="70dp"
+        android:src="@drawable/studass"
+        android:layout_gravity="center"
+        android:layout_height="70dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="28dp" />
+
+
+    <TextView
+        android:text="OR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:id="@+id/or"
+        android:textColor="@color/bg_screen3"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/btnstud"
+        android:textColor="@color/bg_screen3"
+        android:background="@android:color/background_light"
+        android:layout_below="@+id/or"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="70dp"
+        android:src="@drawable/stud"
+        android:layout_gravity="center"
+        android:layout_height="70dp"
+        android:layout_below="@+id/or"
+        android:layout_toLeftOf="@+id/or"
+        android:layout_toStartOf="@+id/or"
+        android:layout_marginTop="22dp" />
 </RelativeLayout>

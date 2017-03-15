@@ -85,7 +85,7 @@ public class ChooseSubjectStud extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Subject subject = (Subject) subjects.get(position);
-                        Intent moveToDetailIntent = new Intent(ChooseSubjectStud.this, StartSession.class);
+                        Intent moveToDetailIntent = new Intent(ChooseSubjectStud.this, ChoosePerson.class);
                         // moveToDetailIntent.putExtra("bkjb", );
                         String emnekode= subject.getEmnekode();
                         String emnenavn = subject.getEmnenavn();
