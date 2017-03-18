@@ -27,7 +27,7 @@
             android:label="@string/title_activity_stud_or_ass"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CooseSubjectAss"
+            android:name=".ChooseSubjectAss"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".FeedAdapterSubject" />
         <activity android:name=".StartSession" />

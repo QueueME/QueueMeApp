@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class CooseSubjectAss extends Activity {
+public class ChooseSubjectAss extends Activity {
     // Search EditText
     //private EditText inputSearch;
     ArrayAdapter feedAdapter;
@@ -72,42 +72,32 @@ public class CooseSubjectAss extends Activity {
 
                 }
 
-                //lager arrayadapter som viser listene
+                FeedAdapter_ChooseSubject_Ass Adapter = new FeedAdapter_ChooseSubject_Ass(ChooseSubjectAss.this, R.layout.list_subjectitem_ass, subjects);
+                l.setAdapter(Adapter);
 
-                 feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
-                l.setAdapter(feedAdapter);
-                //definerer hva som skjer når man trykker på searchknappen
-
-                //lager funkjsonen når man trykker på en av knappene i listviewen
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Subject subject = (Subject) subjects.get(position);
-                        Intent moveToDetailIntent = new Intent(CooseSubjectAss.this, StartSession.class);
+                        Intent moveToDetailIntent = new Intent(ChooseSubjectAss.this, StartSession.class);
                         // moveToDetailIntent.putExtra("bkjb", );
                         String emnekode= subject.getEmnekode();
                         String emnenavn = subject.getEmnenavn();
-
-
 
 
                         moveToDetailIntent.putExtra("emnekode",emnekode);
                         moveToDetailIntent.putExtra("emnenavn",emnenavn);
 
 
+                        //startActivityForResult(moveToDetailIntent,position);
+                        //Person Anders = new Person();
+                        //Anders.setName("nonneanders");
+                        //person.getPersons().add(Anders);
                         startActivity(moveToDetailIntent);
-
-
 
 
                     }
                 });
-
-
-
-
 
 
             }
@@ -122,7 +112,7 @@ public class CooseSubjectAss extends Activity {
             @Override
             public void onClick(View v) {
 
-                final AlertDialog.Builder mbuilder = new AlertDialog.Builder(CooseSubjectAss.this);
+                final AlertDialog.Builder mbuilder = new AlertDialog.Builder(ChooseSubjectAss.this);
                 View mView= getLayoutInflater().inflate(R.layout.dialog_subject,null);
                 mbuilder.setView(mView);
                 final AlertDialog dialog = mbuilder.create();
@@ -152,7 +142,7 @@ public class CooseSubjectAss extends Activity {
 
                         //lager arrayadapter som viser listene
 
-                        feedAdapter = new ArrayAdapter(CooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
+                        feedAdapter = new ArrayAdapter(ChooseSubjectAss.this, android.R.layout.simple_list_item_1,subjects);
                         listView.setAdapter(feedAdapter);
                         //definerer hva som skjer når man trykker på searchknappen
                         inputSearch.addTextChangedListener(new TextWatcher() {
@@ -163,7 +153,7 @@ public class CooseSubjectAss extends Activity {
 
                             @Override
                             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                                CooseSubjectAss.this.feedAdapter.getFilter().filter(s);
+                                ChooseSubjectAss.this.feedAdapter.getFilter().filter(s);
                             }
 
                             @Override
@@ -184,7 +174,7 @@ public class CooseSubjectAss extends Activity {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                                 myRefdialog2.child("Person").child(user.getUid()).child("FavoriteAssSubject").push().setValue(subject);
-                                Toast.makeText(CooseSubjectAss.this,"Subject added to favorites",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ChooseSubjectAss.this,"Subject added to favorites",Toast.LENGTH_SHORT).show();
 
 
 

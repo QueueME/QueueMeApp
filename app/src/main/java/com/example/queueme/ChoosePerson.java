@@ -51,7 +51,8 @@ public class ChoosePerson extends AppCompatActivity {
 
                 }
                 //lager et adapter
-                FeedAdapter feedAdapter =new FeedAdapter(ChoosePerson.this,R.layout.list_person, persons);
+
+                FeedAdapter_ChoosePerson feedAdapter = new FeedAdapter_ChoosePerson(ChoosePerson.this, R.layout.list_subjectitem_person, persons);
                 l.setAdapter(feedAdapter);
                 //definerer hva som skal skje når man trykker på en person
                 l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,12 +60,10 @@ public class ChoosePerson extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Person person = (Person) persons.get(position);
                         Intent moveToDetailIntent = new Intent(ChoosePerson.this, DetailedActivity.class);
-                        // moveToDetailIntent.putExtra("bkjb", );
+
 
                         String email = person.getEmail().toString();
                         String uid = person.getUid().toString();
-
-
 
 
 
@@ -73,11 +72,6 @@ public class ChoosePerson extends AppCompatActivity {
                         moveToDetailIntent.putExtra("emnekode",emnekode);
                         moveToDetailIntent.putExtra("emnenavn",emnenavn);
 
-
-                        //startActivityForResult(moveToDetailIntent,position);
-                        //Person Anders = new Person();
-                        //Anders.setName("nonneanders");
-                        //person.getPersons().add(Anders);
                         startActivity(moveToDetailIntent);
 
 
@@ -88,10 +82,8 @@ public class ChoosePerson extends AppCompatActivity {
 
 
 
-
-
-
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
