@@ -10,7 +10,7 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvname"
+        android:id="@+id/tvEmnenavn"
         app:layout_constraintBottom_toTopOf="@+id/tvemail"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"

@@ -24,7 +24,7 @@ public class AddPerson extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_addperson);
 
         email=(EditText) findViewById(R.id.email);
-        name =(EditText) findViewById(R.id.name);
+        name =(EditText) findViewById(R.id.tvEmnenavn);
 
 
 

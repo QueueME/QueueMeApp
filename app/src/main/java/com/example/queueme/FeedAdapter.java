@@ -65,7 +65,7 @@ public class FeedAdapter extends ArrayAdapter {
         final TextView tvname;
         final TextView tvemail;
         ViewHolder(View v){
-            this.tvname=(TextView) v.findViewById(R.id.tvname);
+            this.tvname=(TextView) v.findViewById(R.id.tvEmnenavn);
             this.tvemail=(TextView) v.findViewById(R.id.tvemail);
 
         }

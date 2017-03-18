@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_below="@+id/name"
-        android:layout_alignRight="@+id/name"
-        android:layout_alignEnd="@+id/name"
+        android:layout_below="@+id/tvEmnenavn"
+        android:layout_alignRight="@+id/tvEmnenavn"
+        android:layout_alignEnd="@+id/tvEmnenavn"
         android:layout_marginTop="13dp"
         android:id="@+id/email" />
 
@@ -46,7 +46,7 @@
         android:text="Name"
         android:ems="10"
         android:layout_marginTop="46dp"
-        android:id="@+id/name"
+        android:id="@+id/tvEmnenavn"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
