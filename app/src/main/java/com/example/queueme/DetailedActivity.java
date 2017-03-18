@@ -29,6 +29,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     private TextView availible_until;
     private TextView count;
     private ArrayList<Person> persons = new ArrayList<Person>();
+    private ArrayList<Person> studasses = new ArrayList<Person>();
     private Person studAss;
     private String studName;
     private Person Me;
@@ -60,23 +61,12 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-        //lager en referanse/kobling  til databasen vår
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Subject");
-        DatabaseReference studass=database.getReference();
-        DatabaseReference myself =database.getReference();
-
-        //henter info om meg
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid=user.getUid();
-        getMe(myself,uid);
 
 
-        //henter ut studass
-        getStudass(studass);
+
 
         name = (TextView) findViewById(R.id.name);
-        name.setText(Me.getName());
+
 
         subjectinfo = (TextView) findViewById(R.id.subjectinfo);
         subjectinfo.setText(emnekode + " " +emnenavn);
@@ -89,7 +79,9 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Subject");
+        final DatabaseReference myRef2 = database.getReference();
         //henter ut alle som er i lsiten og legger dem i vår liste. Dette er fordi childeventlistener ikke kjøres i starten, og vi trenger listen med en gang.
         myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addValueEventListener(new ValueEventListener() {
             @Override
@@ -145,6 +137,41 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+
+        //henter til liste
+
+
+        myRef2.child("Person").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //get all of the children of this level.
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                //shake hands with each of them
+                for (DataSnapshot child: children){
+                    Person person = child.getValue(Person.class);
+                    studasses.add(person);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        int index=0;
+        for (Person person : studasses) {
+            if (person.getUid() == personuid) {
+                index = studasses.indexOf(person);
+            }
+        }
+    //name.setText(studasses.get(0).getName());
+
+        //get me
+
     }
 
     private void fetchData(DataSnapshot dataSnapshot) {
@@ -163,56 +190,8 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         return persons.size();
     }
 
-private void getStudass(DatabaseReference ref){
-
-    ref.child("Person").addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-            for (DataSnapshot child: children){
-                Person person = child.getValue(Person.class);
-                if(person.getUid()==personuid){
-                    studAss=person;
-                }
 
 
-
-            }
-            studAss = dataSnapshot.getValue(Person.class);
-
-
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    });
-
-}
-private void getMe(DatabaseReference ref,String uid){
-
-    ref.child("Person").child(uid).addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            //me = dataSnapshot.getValue(Person.class);
-            Person me=dataSnapshot.getValue(Person.class);
-            SetMe(Me);
-
-
-
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    });
-
-}
-    private void SetMe(Person me){
-        Me=me;
-    }
     private void QueueMe(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail();
