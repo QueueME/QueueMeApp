@@ -23,6 +23,7 @@ public class InQueue extends AppCompatActivity {
     private String emnekode;
     private TextView count;
     private TextView nrinline;
+    private TextView emneinfo;
     private ArrayList<Person> students = new ArrayList<Person>();
 
     @Override
@@ -41,7 +42,8 @@ public class InQueue extends AppCompatActivity {
         //finner textview
         count = (TextView) findViewById(R.id.count);
         nrinline = (TextView) findViewById(R.id.nrInLine);
-
+        emneinfo=(TextView)findViewById(R.id.emneinfo);
+        emneinfo.setText(emnekode + " " + emnenavn);
 
 
         //lager en referanse/kobling  til databasen vår
@@ -61,8 +63,8 @@ public class InQueue extends AppCompatActivity {
 
                 }
                 //setter teksten i texview
-                count.setText("There are " + linecount() + " in this line");
-                nrinline.setText("You are nr " + nrInline() + " in line");
+                count.setText(""+ linecount()+"");
+                nrinline.setText("" + nrInline() + "");
             }
 
             @Override
@@ -134,7 +136,7 @@ public class InQueue extends AppCompatActivity {
 
             }
         }
-        return index;
+        return index +1;
 
 
     }

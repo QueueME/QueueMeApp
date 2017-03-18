@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_in_queue"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.queueme.InQueue">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_in_queue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.queueme.InQueue">
 
     <TextView
-        android:text="YOU'R ADDED IN LINE"
+        android:text="You are now standing in line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -20,20 +20,77 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:src="@drawable/maleeicon"
+        android:layout_gravity="center"
+        android:layout_height="300dp"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:id="@+id/count" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Step out of Queue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light"
+        android:background="@color/bg_screen3" />
 
     <TextView
-        android:text="TextView"
+        android:text="Number in line:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:layout_alignBaseline="@+id/count"
+        android:layout_alignBottom="@+id/count"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp" />
+
+    <TextView
+        android:id="@+id/count"
+        android:text="linecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_below="@+id/imageView1"
+        android:layout_toRightOf="@+id/textView11"
+        android:layout_toEndOf="@+id/textView11"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp" />
+
+    <TextView
+        android:text="nrinline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nrInLine"
+        android:textSize="24sp"
         android:layout_below="@+id/count"
+        android:layout_alignLeft="@+id/count"
+        android:layout_alignStart="@+id/count" />
+
+    <TextView
+        android:text="You are nr:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:layout_alignBottom="@+id/nrInLine"
+        android:layout_alignRight="@+id/textView11"
+        android:layout_alignEnd="@+id/textView11" />
+
+    <TextView
+        android:text="emneinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:id="@+id/nrInLine" />
+        android:id="@+id/emneinfo"
+        android:textAlignment="center" />
+
 </RelativeLayout>
