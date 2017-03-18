@@ -28,7 +28,7 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         //velger studass
         if (v==btnass){
-            startActivity(new Intent(StudOrAss.this, CooseSubjectAss.class));
+            startActivity(new Intent(StudOrAss.this, ChooseSubjectAss.class));
         }
         //velger student
         if (v==btnstud){
