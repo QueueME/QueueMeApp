@@ -56,31 +56,31 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
 
         //henter til liste
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference();
-        myRef.child("Person").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //get all of the children of this level.
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            final DatabaseReference myRef = database.getReference();
+            myRef.child("Person").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //get all of the children of this level.
+                    Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-                //shake hands with each of them
-                for (DataSnapshot child: children){
-                    Person person = child.getValue(Person.class);
-                    persons.add(person);
+                    //shake hands with each of them
+                    for (DataSnapshot child: children){
+                        Person person = child.getValue(Person.class);
+                        persons.add(person);
 
-                    //if(person.getUid()==myUID){
+                        //if(person.getUid()==myUID){
                         //Me= person;
-                    //}
+                        //}
+
+                    }
 
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+                }
         });
 
 
@@ -111,14 +111,12 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
         DatabaseReference myRef2 = database.getReference("Subject");
         myRef2.child(emnekode).child("StudAssList").child(user.getUid()).setValue(persons.get(index));
-        //myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
-        //myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
 
 
-        /*Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
+        Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
         moveToDetailIntent.putExtra("emnekode",emnekode);
         moveToDetailIntent.putExtra("emnenavn",emnenavn);
-        startActivity(moveToDetailIntent);*/
+        startActivity(moveToDetailIntent);
 
     }
 
