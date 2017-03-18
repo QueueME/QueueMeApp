@@ -32,6 +32,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     private Person studAss;
     private String studName;
     private Person me;
+    private String myName;
 
 
     //private int queuenr;
@@ -66,15 +67,17 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         DatabaseReference myself =database.getReference();
 
         //henter info om meg
-        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //String email=user.getEmail();
-        //String uid=user.getUid();
-        //getMe(myself,uid);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email=user.getEmail();
+        String uid=user.getUid();
+        getMe(myself,uid);
+
+
         //henter ut studass
-        //getStudass(studass);
+        getStudass(studass);
 
         name = (TextView) findViewById(R.id.name);
-        name.setText("hamonoin");
+        name.setText(myName);
 
         subjectinfo = (TextView) findViewById(R.id.subjectinfo);
         subjectinfo.setText(emnekode + " " +emnenavn);
@@ -123,13 +126,13 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                fetchDataDelete(dataSnapshot);
+
 
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                fetchDataDelete(dataSnapshot);
             }
 
             @Override
@@ -161,11 +164,21 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         return persons.size();
     }
 
-/*private void getStudass(DatabaseReference ref){
+private void getStudass(DatabaseReference ref){
 
-    ref.child("Person").child(personuid).addValueEventListener(new ValueEventListener() {
+    ref.child("Person").addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+            for (DataSnapshot child: children){
+                Person person = child.getValue(Person.class);
+                if(person.getUid()==personuid){
+                    studAss=person;
+                }
+
+
+
+            }
             studAss = dataSnapshot.getValue(Person.class);
 
 
@@ -180,10 +193,11 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 }
 private void getMe(DatabaseReference ref,String uid){
 
-    ref.child("Person").child(uid).addValueEventListener(new ValueEventListener() {
+    ref.child("Person").child(uid).child("name").addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            me = dataSnapshot.getValue(Person.class);
+            //me = dataSnapshot.getValue(Person.class);
+            myName=dataSnapshot.getValue().toString();
 
 
 
@@ -195,7 +209,7 @@ private void getMe(DatabaseReference ref,String uid){
         }
     });
 
-}*/
+}
     private void QueueMe(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail();
