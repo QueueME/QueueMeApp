@@ -35,10 +35,16 @@
         <activity android:name=".MySession" />
         <activity android:name=".InQueue" />
         <activity android:name=".MySessionSwipe" />
-        <activity android:name=".PopSubject"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.CostumeTheme1"/>
-        <activity android:name=".Searchtest"></activity>
+        <activity
+            android:name=".PopSubject"
+            android:theme="@style/AppTheme.CostumeTheme1"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Searchtest" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".MenyActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
