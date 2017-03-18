@@ -31,7 +31,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     private ArrayList<Person> persons = new ArrayList<Person>();
     private Person studAss;
     private String studName;
-    private Person me;
+    private Person Me;
     private String myName;
 
 
@@ -68,7 +68,6 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
         //henter info om meg
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email=user.getEmail();
         String uid=user.getUid();
         getMe(myself,uid);
 
@@ -77,7 +76,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         getStudass(studass);
 
         name = (TextView) findViewById(R.id.name);
-        name.setText(myName);
+        name.setText(Me.getName());
 
         subjectinfo = (TextView) findViewById(R.id.subjectinfo);
         subjectinfo.setText(emnekode + " " +emnenavn);
@@ -193,11 +192,12 @@ private void getStudass(DatabaseReference ref){
 }
 private void getMe(DatabaseReference ref,String uid){
 
-    ref.child("Person").child(uid).child("name").addValueEventListener(new ValueEventListener() {
+    ref.child("Person").child(uid).addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             //me = dataSnapshot.getValue(Person.class);
-            myName=dataSnapshot.getValue().toString();
+            Person me=dataSnapshot.getValue(Person.class);
+            SetMe(Me);
 
 
 
@@ -210,6 +210,9 @@ private void getMe(DatabaseReference ref,String uid){
     });
 
 }
+    private void SetMe(Person me){
+        Me=me;
+    }
     private void QueueMe(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String email=user.getEmail();
