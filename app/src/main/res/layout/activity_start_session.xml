@@ -78,7 +78,7 @@
     <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:hint="..."
         android:ems="10"
         android:id="@+id/time_up_to"

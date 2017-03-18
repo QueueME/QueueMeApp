@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements
         person.setName(fullname);
         person.setEmail(useremail);
         person.setUid(useruid);
+        person.setTime_to_stop("0");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef= database.getReference("Person");

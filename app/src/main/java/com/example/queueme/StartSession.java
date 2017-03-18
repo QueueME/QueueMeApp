@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,16 +26,23 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
     //private TextView antall;
     private Button queue;
     private EditText time;
-    private String time_to_stop;
+    private  TextView subject;
+
+    private String myUID;
+
+    private ArrayList<Person> persons = new ArrayList<Person>();
+    private Person Me;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_session);
         //henter brukerens info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //lager liste
-        final ArrayList<Person> studass = new ArrayList<Person>();
+        myUID=user.getUid();
         //henter info fra forrige side
+
         Intent intent = getIntent();
         emnenavn = intent.getStringExtra("emnenavn");
         emnekode = intent.getStringExtra("emnekode");
@@ -41,39 +51,74 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         queue.setOnClickListener(this);
         //setter tekst
         time = (EditText) findViewById(R.id.time_up_to);
-        TextView subject= (TextView) findViewById(R.id.subject);
+        subject= (TextView) findViewById(R.id.subject);
         subject.setText(emnekode +" "+ emnenavn);
 
 
-       // TextView enter = (TextView) findViewById(R.id.enter);
-        //enter.setText("You'r about to enter "+ user.getEmail()+"s queue");
+        //henter til liste
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference();
+        myRef.child("Person").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //get all of the children of this level.
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                //shake hands with each of them
+                for (DataSnapshot child: children){
+                    Person person = child.getValue(Person.class);
+                    persons.add(person);
+
+                    //if(person.getUid()==myUID){
+                        //Me= person;
+                    //}
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
 
     }
 
+
+
     private void QueueMe(){
 
-        time_to_stop= time.getText().toString();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email=user.getEmail();
-        String uid=user.getUid();
-
-        Person magnus = new Person();
-        magnus.setUid(uid);
-        magnus.setEmail(email);
-        magnus.setTime_to_stop(time_to_stop);
-
+        subject.setText(persons.get(0).getUid());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Subject");
-        myRef.child(emnekode).child("StudAssList").child(uid).setValue(user);
+        DatabaseReference myRef = database.getReference("Person");
+        myRef.child(persons.get(0).getUid()).child("time_to_stop").setValue( time.getText().toString());
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        int index=0;
+        for (Person person : persons) {
+            if (person.getUid() == user.getUid()) {
+                index = persons.indexOf(person);
+            }
+        }
+
+
+
+
+        DatabaseReference myRef2 = database.getReference("Subject");
+        myRef2.child(emnekode).child("StudAssList").child(user.getUid()).setValue(persons.get(index));
         //myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
         //myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").push().setValue("Preallokering");
 
 
-        Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
+        /*Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
         moveToDetailIntent.putExtra("emnekode",emnekode);
         moveToDetailIntent.putExtra("emnenavn",emnenavn);
-        startActivity(moveToDetailIntent);
+        startActivity(moveToDetailIntent);*/
 
     }
 
