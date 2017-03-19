@@ -151,6 +151,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
                 for (DataSnapshot child: children){
                     Person person = child.getValue(Person.class);
                     studasses.add(person);
+                    name.setText(person.getName());
 
 
                 }
@@ -163,16 +164,13 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
             }
         });
         int index=0;
-        for (Person person : studasses) {
-            if (person.getUid() == personuid) {
-                index = studasses.indexOf(person);
-            }
-        }
+
     //name.setText(studasses.get(0).getName());
 
         //get me
 
     }
+
 
     private void fetchData(DataSnapshot dataSnapshot) {
         //students.clear();
