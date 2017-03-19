@@ -37,7 +37,7 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_session);
+        setContentView(R.layout.start_session);
         //henter brukerens info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         myUID=user.getUid();
