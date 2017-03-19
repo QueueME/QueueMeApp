@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         if (v==btnRegister){
+            //Toast.makeText(MainActivity.this,"CLICKED",Toast.LENGTH_SHORT).show();
             createAccount(etInputEmail.getText().toString(), etInputPassword.getText().toString());
 
 

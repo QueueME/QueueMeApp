@@ -76,15 +76,15 @@
         android:layout_marginStart="19dp" />
 
     <EditText
+        android:id="@+id/time_up_to"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="..."
-        android:ems="10"
-        android:id="@+id/time_up_to"
-        android:textSize="14sp"
-        android:layout_below="@+id/textView10"
         android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10" />
+        android:layout_alignStart="@+id/textView10"
+        android:layout_below="@+id/textView10"
+        android:ems="10"
+        android:hint="..."
+        android:inputType="number"
+        android:textSize="14sp" />
 
 </RelativeLayout>
