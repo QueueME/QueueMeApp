@@ -46,7 +46,6 @@ public class MySession extends AppCompatActivity implements View.OnClickListener
 
 
         Intent intent = getIntent();
-
         emnenavn = intent.getStringExtra("emnenavn");
         emnekode = intent.getStringExtra("emnekode");
 

@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -72,7 +73,6 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         subjectinfo.setText(emnekode + " " +emnenavn);
 
         availible_until = (TextView) findViewById(R.id.avilible_until);
-        availible_until.setText("10");
 
         count= (TextView) findViewById(R.id.count);
 
@@ -81,7 +81,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Subject");
-        final DatabaseReference myRef2 = database.getReference();
+        final DatabaseReference myRef2 = database.getReference("Subject").child(emnekode).child("StudAssList");
         //henter ut alle som er i lsiten og legger dem i vår liste. Dette er fordi childeventlistener ikke kjøres i starten, og vi trenger listen med en gang.
         myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addValueEventListener(new ValueEventListener() {
             @Override
@@ -140,11 +140,10 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
         //henter til liste
 
-
-        myRef2.child("Person").addValueEventListener(new ValueEventListener() {
+        Query queryRef =myRef2.orderByChild("uid").equalTo(personuid);
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //get all of the children of this level.
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
                 //shake hands with each of them
@@ -153,7 +152,11 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
                     studasses.add(person);
 
 
+
                 }
+
+                name.setText(studasses.get(0).getName());
+                availible_until.setText(studasses.get(0).getTime_to_stop());
 
             }
 
@@ -162,15 +165,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-        int index=0;
-        for (Person person : studasses) {
-            if (person.getUid() == personuid) {
-                index = studasses.indexOf(person);
-            }
-        }
-    //name.setText(studasses.get(0).getName());
 
-        //get me
 
     }
 

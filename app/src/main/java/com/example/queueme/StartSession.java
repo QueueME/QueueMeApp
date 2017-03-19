@@ -69,9 +69,7 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
                         Person person = child.getValue(Person.class);
                         persons.add(person);
 
-                        //if(person.getUid()==myUID){
-                        //Me= person;
-                        //}
+
 
                     }
 
@@ -92,10 +90,8 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
     private void QueueMe(){
 
-        subject.setText(persons.get(0).getUid());
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Person");
-        myRef.child(persons.get(0).getUid()).child("time_to_stop").setValue( time.getText().toString());
+        //subject.setText(persons.get(0).getUid());
+
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -107,8 +103,10 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         }
 
 
-
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Person");
+        myRef.child(persons.get(index).getUid()).child("time_to_stop").setValue( time.getText().toString());
+        persons.get(index).setTime_to_stop(time.getText().toString());
         DatabaseReference myRef2 = database.getReference("Subject");
         myRef2.child(emnekode).child("StudAssList").child(user.getUid()).setValue(persons.get(index));
 
