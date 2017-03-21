@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +27,9 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
     //private TextView antall;
     private Button queue;
     private EditText time;
-    private  TextView subject;
+    private TextView subject;
+
+    private ImageButton meny, home;
 
     private String myUID;
 
@@ -37,7 +40,7 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_session);
+        setContentView(R.layout.activity_start_session);
         //henter brukerens info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         myUID=user.getUid();
@@ -53,6 +56,21 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         time = (EditText) findViewById(R.id.time_up_to);
         subject= (TextView) findViewById(R.id.subject);
         subject.setText(emnekode +" "+ emnenavn);
+
+        meny = (ImageButton) findViewById(R.id.Meny);
+        home = (ImageButton) findViewById(R.id.home);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartSession.this, MenyActivity.class));
+            }
+                });
+            home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartSession.this, StudOrAss.class));
+            }
+                });
 
 
         //henter til liste

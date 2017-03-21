@@ -3,6 +3,7 @@ package com.example.queueme;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,17 +31,33 @@ public class ChooseSubjectStud extends Activity {
     // Search EditText
     //private EditText inputSearch;
     ArrayAdapter feedAdapter;
+    private ImageButton meny, home;
     private Button popup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coose_subject_ass);
 
+
         //finer listview og setter som variabel
         final ListView l=(ListView) findViewById(R.id.listview);
         //finner buttons
         popup = (Button) findViewById(R.id.popup);
 
+        meny = (ImageButton) findViewById(R.id.menu);
+        home = (ImageButton) findViewById(R.id.home);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseSubjectStud.this, MenyActivity.class));
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseSubjectStud.this, StudOrAss.class));
+            }
+        });
 
         //lager listen alle fagene skal legger i
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
@@ -56,6 +74,8 @@ public class ChooseSubjectStud extends Activity {
         //
         //henter info om bruker
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
         myRef.child("Person").child(user.getUid()).child("FavoriteStudSubject").addValueEventListener(new ValueEventListener() {
             @Override

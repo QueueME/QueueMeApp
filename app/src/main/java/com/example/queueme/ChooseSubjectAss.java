@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,10 +31,11 @@ public class ChooseSubjectAss extends Activity {
     //private EditText inputSearch;
     ArrayAdapter feedAdapter;
     private Button popup;
+    private ImageButton meny, home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_subject_ass);
+        setContentView(R.layout.activity_coose_subject_ass);
 
         //finer listview og setter som variabel
         final ListView l=(ListView) findViewById(R.id.listview);
@@ -45,6 +47,21 @@ public class ChooseSubjectAss extends Activity {
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
 
         //inputSearch = (EditText) findViewById(R.id.inputSearch);
+
+        meny = (ImageButton) findViewById(R.id.menu);
+        home = (ImageButton) findViewById(R.id.home);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseSubjectAss.this, MenyActivity.class));
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseSubjectAss.this, StudOrAss.class));
+            }
+        });
 
 
         //henter ut alle subjects som ligger i databasen og legger i liste
@@ -106,6 +123,9 @@ public class ChooseSubjectAss extends Activity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
+
+
         });
 
         popup.setOnClickListener(new View.OnClickListener() {

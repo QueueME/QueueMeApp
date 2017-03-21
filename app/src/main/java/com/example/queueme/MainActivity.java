@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements
     private Button btnsave;
     private Button btnpersons;
     private Button addfag;
+    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,13 @@ public class MainActivity extends AppCompatActivity implements
         btnsave=(Button) findViewById(R.id.btnsave);
         btnpersons=(Button) findViewById(R.id.btnpersons);
         addfag=(Button) findViewById(R.id.addfag);
+        login = (Button) findViewById(R.id.login);
         //setter onclicklistener
         btnRegister.setOnClickListener(this);
         btnsave.setOnClickListener(this);
         btnpersons.setOnClickListener(this);
         addfag.setOnClickListener(this);
+        login.setOnClickListener(this);
 
         //nødvendig for å opprette bruker
         mAuth = FirebaseAuth.getInstance();
@@ -174,6 +177,9 @@ public class MainActivity extends AppCompatActivity implements
         }
         if (v==addfag){
             startActivity(new Intent(MainActivity.this, AddSubject.class));
+        }
+        if(v==login){
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
 
     }

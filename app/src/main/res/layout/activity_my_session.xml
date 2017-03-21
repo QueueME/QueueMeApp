@@ -1,64 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_my_session"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.queueme.MySession">
+
+
+    <Toolbar
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:id="@+id/toolbar2"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Your Session"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.015"
+        tools:ignore="HardcodedText"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/person"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/text"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintRight_toRightOf="@+id/text"
+        android:layout_marginBottom="33dp" />
 
     <TextView
         android:text="Number in line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
         android:id="@+id/text"
-        android:layout_below="@+id/person"
-        android:layout_centerHorizontal="true" />
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/update"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="195dp"
+        app:layout_constraintLeft_toLeftOf="@+id/update" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text"
-        android:layout_alignLeft="@+id/person"
-        android:layout_alignStart="@+id/person"
-        android:layout_marginTop="15dp"
-        android:id="@+id/nr" />
+        android:id="@+id/nr"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintRight_toRightOf="@+id/text"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/text" />
 
     <Button
         android:text="Add fictisious person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="69dp"
         android:id="@+id/update"
-        android:layout_above="@+id/person"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Your session"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:id="@+id/textView4"
-        android:textSize="30sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/nr"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintTop_toTopOf="@+id/view_pager"
+        android:layout_marginRight="61dp"
+        app:layout_constraintVertical_bias="1.0" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/update"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

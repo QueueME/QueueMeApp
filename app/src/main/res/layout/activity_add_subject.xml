@@ -4,11 +4,8 @@
     android:id="@+id/activity_add_subject"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.queueme.AddSubject">
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -16,28 +13,28 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:id="@+id/enavn" />
+        android:layout_marginTop="52dp"
+        android:id="@+id/enavn"
+        android:layout_below="@+id/customToolbar"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
+        android:layout_marginTop="105dp"
+        android:id="@+id/ekode"
         android:layout_below="@+id/enavn"
-        android:layout_alignRight="@+id/enavn"
-        android:layout_alignEnd="@+id/enavn"
-        android:layout_marginTop="30dp"
-        android:id="@+id/ekode" />
+        android:layout_alignLeft="@+id/enavn"
+        android:layout_alignStart="@+id/enavn" />
 
     <RadioButton
         android:text="RadioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="153dp"
+        android:id="@+id/btnesave"
         android:layout_below="@+id/ekode"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:id="@+id/btnesave" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
