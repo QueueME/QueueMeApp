@@ -1,6 +1,8 @@
 package com.example.queueme.MySessionSwipeFunction;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +17,10 @@ import android.widget.Toast;
 
 import com.example.queueme.Person;
 import com.example.queueme.R;
+import com.example.queueme.StudOrAss;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,12 +49,19 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     private TextView nr;
     private TextView person;
     Button end;
-    private ArrayList<Person> persons = new ArrayList<Person>();
+    private ArrayList<Person> students = new ArrayList<Person>();
+    private String emnenavn;
+    private String emnekode;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
+
+        Intent intent = getIntent();
+        emnenavn = intent.getStringExtra("emnenavn");
+        emnekode = intent.getStringExtra("emnekode");
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -58,6 +71,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         person=(TextView) findViewById(R.id.person);
         nr=(TextView) findViewById(R.id.nr);
+        person.setText("There are no person in line");
+        nr.setText("0");
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Subject");
+        final DatabaseReference myRef2 = database.getReference("Subject");
+
         end =(Button) findViewById(R.id.end);
         end.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +93,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        removeQueue(myRef2);
                         dialog.dismiss();
                     }
                 });
@@ -88,22 +108,87 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         });
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Person");
-        //henter ut alle som er i lsiten og legger dem i vår liste. Dette er fordi childeventlistener ikke kjøres i starten, og vi trenger listen med en gang.
-        myRef.addValueEventListener(new ValueEventListener() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getToken() instead.
+            uid = user.getUid();
+        }
+
+        final ArrayList<Person> students = new ArrayList<Person>();
+        this.students=students;
+
+        //lager funskjoner når endring under denne referansen skjer
+        myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                for (DataSnapshot child: children){
-                    Person person = child.getValue(Person.class);
-                    persons.add(person);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //henter data og legger til personen som addes til listen over
+                fetchData(dataSnapshot);
+                //setter tekst i textviewene
+                int studentsnr= students.size();
+                nr.setText("the line has "+String.valueOf(studentsnr));
 
+                if (!students.isEmpty()){
+                    String uid= students.get(0).getUid();
 
+                    //finner navnet på første i kø i persondata i persondatabasen
+                    DatabaseReference personRef = database.getReference("Person");
+                    personRef.child(uid).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Person person = dataSnapshot.getValue(Person.class);
+                            String firstInLineName = person.getName();
+                            //oppdaterer texviewen
+                            TextView firstperson = (TextView) findViewById(R.id.person);
+                            firstperson.setText(firstInLineName + " are next in line");
+                        }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }else{
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText("no one in line");
                 }
-                person.setText(persons.get(0).getName());
-                nr.setText(String.valueOf(linecount()));
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                //henter ut personene som slettes og sletter han fra listen
+                fetchDataDelete(dataSnapshot);
+                //oppdatere texviewene
+                int studentsnr= students.size();
+                nr.setText("the line has "+String.valueOf(studentsnr));
+
+                if (!students.isEmpty()){
+                    String student= students.get(0).getEmail();
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText(student + " are next in line");
+                }else{
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText("no one in line");
+                }
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -116,8 +201,27 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
 
     }
+    private void removeQueue(DatabaseReference ref){
+        ref.child(emnekode).child("StudAssList").child(uid).removeValue();
+        startActivity(new Intent(ScreenSlidePagerActivity.this, StudOrAss.class));
+        finish();
+    }
+    private void fetchData(DataSnapshot dataSnapshot)
+    {
+        //students.clear();
+        Person person = dataSnapshot.getValue(Person.class);
+        students.add(person);
+    }
+    private void fetchDataDelete(DataSnapshot dataSnapshot)
+    {
+        //students.clear();
+        Person person = dataSnapshot.getValue(Person.class);
+        //MÅ LEGGE TIL SLIK AT DENNE PERSONEN FJERNER SEG
+
+    }
+
     private int linecount() {
-        return persons.size();
+        return students.size();
     }
 
     @Override
@@ -142,8 +246,8 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
             Toast.makeText(ScreenSlidePagerActivity.this, "YYOYUIO",Toast.LENGTH_SHORT).show();
             //mPager.removeViewAt(0);
             //mPagerAdapter.notifyDataSetChanged();
-            persons.remove(0);
-            person.setText(persons.get(0).getName());
+            students.remove(0);
+            person.setText(students.get(0).getName());
             nr.setText(String.valueOf(linecount()));
 
         }
