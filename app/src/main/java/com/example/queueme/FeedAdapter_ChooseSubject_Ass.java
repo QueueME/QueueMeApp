@@ -21,6 +21,8 @@ public class FeedAdapter_ChooseSubject_Ass extends ArrayAdapter {
     private List<Subject> subjects;
 
 
+
+
     public FeedAdapter_ChooseSubject_Ass(Context context, int resource, List<Subject> subjects) {
         super(context, resource);
         this.layoutResource = resource;
@@ -40,10 +42,13 @@ public class FeedAdapter_ChooseSubject_Ass extends ArrayAdapter {
         View view = layoutInflater.inflate(layoutResource, parent, false);
         TextView tvEmnekode = (TextView) view.findViewById(R.id.tvEmneKode_Ass);
         TextView tvEmnenavn = (TextView) view.findViewById(R.id.tvEmneNavn_Ass);
+
         // TextView tvAntstud = (TextView) view.findViewById(R.id.tvAntallstud);
 
         Subject currentApp = subjects.get(position);
 
+       // ImageView image = (ImageView) view.findViewById(R.id.arrow);
+        // image.setImageResource(arrow);
 
         tvEmnenavn.setText(currentApp.getEmnenavn());
         tvEmnekode.setText(currentApp.getEmnekode());

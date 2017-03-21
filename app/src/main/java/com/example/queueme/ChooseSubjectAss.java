@@ -33,7 +33,9 @@ public class ChooseSubjectAss extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_subject_ass);
+        setContentView(R.layout.activity_coose_subject_ass);
+
+        //activity_coose_subject_ass
 
         //finer listview og setter som variabel
         final ListView l=(ListView) findViewById(R.id.listview);
@@ -170,6 +172,9 @@ public class ChooseSubjectAss extends Activity {
                                 Subject subject = (Subject) subjects.get(position);
                                 String emnekode= subject.getEmnekode();
                                 String emnenavn = subject.getEmnenavn();
+
+
+
                                 //henter brukerdata
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
