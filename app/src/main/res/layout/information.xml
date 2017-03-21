@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_in_queue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.queueme.InQueue">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="You are about to enter a queue"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp" />
+
+
+    <Button
+        android:id="@+id/queue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/bg_screen3"
+        android:text="QueueMe"
+        android:textColor="@android:color/background_light" />
+
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/studass"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="TextView"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/name"
+        android:layout_alignRight="@+id/imageView1"
+        android:layout_alignEnd="@+id/imageView1" />
+
+    <TextView
+        android:id="@+id/avilible_until"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="TextView"
+        android:layout_below="@+id/subjectinfo"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginTop="28dp" />
+
+    <TextView
+        android:id="@+id/subjectinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="TextView"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="TextView"
+        android:layout_marginBottom="39dp"
+        android:layout_above="@+id/queue"
+        android:layout_toLeftOf="@+id/avilible_until"
+        android:layout_toStartOf="@+id/avilible_until"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
+
+    <ImageView
+        android:id="@+id/imageVie"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:layout_gravity="center"
+        android:src="@drawable/books"
+        android:layout_alignTop="@+id/subjectinfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/imageVie"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:layout_gravity="center"
+        android:src="@drawable/clockicon2"
+        android:layout_alignTop="@+id/subjectinfo"
+        android:layout_alignRight="@+id/avilible_until"
+        android:layout_alignEnd="@+id/avilible_until" />
+
+</RelativeLayout>
