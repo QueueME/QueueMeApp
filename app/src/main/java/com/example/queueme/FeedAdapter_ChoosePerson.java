@@ -40,13 +40,15 @@ public class FeedAdapter_ChoosePerson extends ArrayAdapter {
 
 
         TextView name = (TextView) view.findViewById(R.id.tvname);
-        TextView email = (TextView) view.findViewById(R.id.tvemail);
+       // TextView email = (TextView) view.findViewById(R.id.tvemail);
+        TextView time = (TextView) view.findViewById(R.id.time_until);
 
         Person currentApp = persons.get(position);
 
 
         name.setText(currentApp.getName());
-        email.setText(currentApp.getEmail());
+        //email.setText(currentApp.getEmail());
+        time.setText(currentApp.getTime_to_stop());
 
 
         return view;
