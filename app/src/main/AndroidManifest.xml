@@ -19,7 +19,6 @@
         <activity android:name=".AddSubject" />
         <activity android:name=".ChoosePerson" />
         <activity android:name=".MySessionSwipeFunction.ScreenSlidePagerActivity" />
-
         <activity
             android:name=".DetailedActivity"
             android:label="@string/title_activity_detailed"
@@ -43,10 +42,12 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Searchtest" />
         <activity android:name=".SignupActivity" />
+        <activity android:name=".infoscreen.WelcomeActivityStudent" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".MenyActivity" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".infoscreen.WelcomeActivityStudass"></activity>
     </application>
 
 </manifest>

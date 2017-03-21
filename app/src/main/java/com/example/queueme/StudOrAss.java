@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
+import com.example.queueme.infoscreen.WelcomeActivityStudent;
 
 public class StudOrAss extends AppCompatActivity implements View.OnClickListener{
 
@@ -40,7 +40,7 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
             startActivity(new Intent(StudOrAss.this, ChooseSubjectStud.class));
         }
         if (v==swipe){
-            startActivity(new Intent(StudOrAss.this, ScreenSlidePagerActivity.class));
+            startActivity(new Intent(StudOrAss.this, WelcomeActivityStudent.class));
         }
 
     }
