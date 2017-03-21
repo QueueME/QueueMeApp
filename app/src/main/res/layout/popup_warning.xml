@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="WARNING!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:textSize="14sp" />
+
+    <TextView
+        android:text="You are about to end this queue. You will not be able to go back. "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Are you sure you want to end this session?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textAlignment="center" />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true">
+
+        <Button
+            android:text="NO"
+            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/no"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:text="YES"
+            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/yes"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+</LinearLayout>
