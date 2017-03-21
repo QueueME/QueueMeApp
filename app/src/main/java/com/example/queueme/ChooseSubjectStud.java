@@ -74,7 +74,7 @@ public class ChooseSubjectStud extends Activity {
 
                 //lager arrayadapter som viser listene
 
-                feedAdapter = new ArrayAdapter(ChooseSubjectStud.this, android.R.layout.simple_list_item_1,subjects);
+               FeedAdapeter_ChooseSubject feedAdapter = new FeedAdapeter_ChooseSubject(ChooseSubjectStud.this, R.layout.list_subjectitem_stud ,subjects);
                 l.setAdapter(feedAdapter);
                 //definerer hva som skjer når man trykker på searchknappen
 
