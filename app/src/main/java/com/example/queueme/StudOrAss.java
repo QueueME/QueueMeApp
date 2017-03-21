@@ -6,10 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
+
 public class StudOrAss extends AppCompatActivity implements View.OnClickListener{
 
     private Button btnass;
     private Button btnstud;
+    private Button swipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +21,11 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
 
         btnass=(Button) findViewById(R.id.btnass);
         btnstud=(Button) findViewById(R.id.btnstud);
+        swipe=(Button) findViewById(R.id.swipe);
 
         btnass.setOnClickListener(this);
         btnstud.setOnClickListener(this);
+        swipe.setOnClickListener(this);
 
     }
 
@@ -33,6 +38,9 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
         //velger student
         if (v==btnstud){
             startActivity(new Intent(StudOrAss.this, ChooseSubjectStud.class));
+        }
+        if (v==swipe){
+            startActivity(new Intent(StudOrAss.this, ScreenSlidePagerActivity.class));
         }
 
     }

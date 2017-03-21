@@ -18,6 +18,8 @@
         <activity android:name=".AddPerson" />
         <activity android:name=".AddSubject" />
         <activity android:name=".ChoosePerson" />
+        <activity android:name=".MySessionSwipeFunction.ScreenSlidePagerActivity" />
+
         <activity
             android:name=".DetailedActivity"
             android:label="@string/title_activity_detailed"
