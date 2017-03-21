@@ -50,4 +50,3 @@ public class FeedAdapeter_ChooseSubject extends ArrayAdapter {
         return view;
     }
 }
-//heihei
