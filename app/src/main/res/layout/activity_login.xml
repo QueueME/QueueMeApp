@@ -14,7 +14,22 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/text"
+            android:id="@+id/imageView"
+            android:layout_height="112dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="12dp" />
 
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Login to your account"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -26,14 +41,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/hint_email"
                 android:backgroundTint="@android:color/background_light"
+                android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/bg_screen3"
-                android:textColorHint="@android:color/white" />
+                android:textColorHint="@android:color/white"
+                android:textColorLink="@color/bg_main" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/background_light">
@@ -57,9 +74,9 @@
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="10dip"
             android:background="@color/bg_screen3"
-            android:text="@string/btn_login"
+            android:text="Login"
             android:textColor="@android:color/background_light" />
 
         <Button
@@ -78,7 +95,7 @@
             android:id="@+id/btn_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="0dip"
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
