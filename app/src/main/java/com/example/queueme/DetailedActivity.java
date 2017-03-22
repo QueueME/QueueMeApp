@@ -213,6 +213,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
             startActivity(moveToDetailIntent);
             finish();
+            //
         }
     }
 }
