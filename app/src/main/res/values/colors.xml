@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#0080ff</color>
+    <color name="colorPrimaryDark">#95cafe</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
     <color name="bg_screen2">#5eed6f</color>
     <color name="bg_screen3">#2084f0</color>
-    <color name="bg_screen4">#c873f4</color>
+    <color name="bg_screen4">#6289bb</color>
 
     <!-- dots inactive colors -->
     <color name="dot_dark_screen1">#d1395c</color>
@@ -34,7 +34,7 @@
     <color name="btn_login">#26ae90</color>
     <color name="btn_login_bg">#eceef1</color>
     <color name="lbl_name">#333333</color>
-    <color name="btn_logut_bg">#ff6861</color>
+    <color name="btn_logut_bg">#f58c6c</color>
 
 
     <array name="array_dot_active">
