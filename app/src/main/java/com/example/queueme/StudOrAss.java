@@ -17,7 +17,7 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stud_or_ass);
+        setContentView(R.layout.activity_stud_or_ass_toolbar);
 
         btnass=(Button) findViewById(R.id.btnass);
         btnstud=(Button) findViewById(R.id.btnstud);

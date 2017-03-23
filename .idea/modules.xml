@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QueueMeApp.iml" filepath="$PROJECT_DIR$/QueueMeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/QueueMeAppPu.iml" filepath="$PROJECT_DIR$/QueueMeAppPu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QueueMoui.iml" filepath="$PROJECT_DIR$/QueueMoui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
