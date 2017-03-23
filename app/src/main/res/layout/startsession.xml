@@ -21,7 +21,7 @@
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Clock2"
+        app:srcCompat="@drawable/clock2"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="0dp" />
 
