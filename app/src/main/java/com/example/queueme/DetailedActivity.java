@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     private String studName;
     private Person Me;
     private String myName;
+    private ImageButton meny, home;
 
 
     //private int queuenr;
@@ -61,7 +63,20 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         emnekode = intent.getStringExtra("emnekode");
 
 
-
+        meny = (ImageButton) findViewById(R.id.meny);
+        home = (ImageButton) findViewById(R.id.home);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailedActivity.this, MenyActivity.class));
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailedActivity.this, StudOrAss.class));
+            }
+        });
 
 
 

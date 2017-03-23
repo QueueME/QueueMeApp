@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 
 public class StartSession extends AppCompatActivity implements View.OnClickListener {
 
+
+    private ImageButton meny, home;
     private String emnekode;
     //private int queuenr;
     private String emnenavn;
@@ -43,6 +46,22 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         myUID=user.getUid();
         //henter info fra forrige side
+
+        meny = (ImageButton) findViewById(R.id.meny);
+        home = (ImageButton) findViewById(R.id.home);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartSession.this, MenyActivity.class));
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartSession.this, StudOrAss.class));
+            }
+        });
+
 
         Intent intent = getIntent();
         emnenavn = intent.getStringExtra("emnenavn");
