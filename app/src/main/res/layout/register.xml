@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="172dp"
+        android:layout_height="50dp"
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="280dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="172dp"
+        android:layout_height="50dp"
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="339dp" />
+
+    <Button
+        android:id="@+id/sign_up_button"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@color/btn_logut_bg"
+        android:text="Registrer"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="397dp" />
+
+    <Button
+        android:id="@+id/btn_reset_password"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="forgot your password?"
+        android:textColor="@color/common_google_signin_btn_text_light_focused"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/lock"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/mail"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="280dp" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/key2"
+        tools:layout_editor_absoluteY="339dp"
+        tools:layout_editor_absoluteX="79dp" />
+
+    <EditText
+        android:id="@+id/fullname"
+        android:layout_width="172dp"
+        android:layout_height="50dp"
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="219dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/name2"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="219dp" />
+
+</android.support.constraint.ConstraintLayout>

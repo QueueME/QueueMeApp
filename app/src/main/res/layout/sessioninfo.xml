@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/board1"
+        tools:layout_editor_absoluteY="-15dp"
+        tools:layout_editor_absoluteX="55dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/book1"
+        tools:layout_editor_absoluteY="320dp"
+        tools:layout_editor_absoluteX="33dp" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="67dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/time"
+        tools:layout_editor_absoluteY="320dp"
+        tools:layout_editor_absoluteX="159dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="76dp"
+        android:layout_height="78dp"
+        app:srcCompat="@drawable/count"
+        tools:layout_editor_absoluteY="320dp"
+        tools:layout_editor_absoluteX="257dp" />
+
+    <TextView
+        android:id="@+id/subjectinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subjectinfo"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <TextView
+        android:id="@+id/avilible_until"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Availible until"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Count"
+        tools:layout_editor_absoluteX="285dp"
+        tools:layout_editor_absoluteY="405dp" />
+
+    <Button
+        android:id="@+id/queue"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:background="@color/btn_logut_bg"
+        android:text="Queue me "
+        android:textColor="@android:color/background_light"
+        tools:layout_editor_absoluteX="-8dp"
+        tools:layout_editor_absoluteY="466dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anders By Kampenes"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="272dp" />
+
+</android.support.constraint.ConstraintLayout>
