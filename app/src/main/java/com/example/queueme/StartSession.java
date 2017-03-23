@@ -47,20 +47,6 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         myUID=user.getUid();
         //henter info fra forrige side
 
-        meny = (ImageButton) findViewById(R.id.meny);
-        home = (ImageButton) findViewById(R.id.home);
-        meny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartSession.this, MenyActivity.class));
-            }
-        });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StartSession.this, StudOrAss.class));
-            }
-        });
 
 
         Intent intent = getIntent();

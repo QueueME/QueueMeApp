@@ -28,13 +28,7 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
         btnstud.setOnClickListener(this);
         swipe.setOnClickListener(this);
 
-        meny = (ImageButton) findViewById(R.id.meny);
-        meny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(StudOrAss.this, MenyActivity.class));
-            }
-        });
+
 
     }
 
