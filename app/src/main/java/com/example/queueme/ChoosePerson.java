@@ -1,7 +1,6 @@
 package com.example.queueme;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,20 +35,8 @@ public class ChoosePerson extends AppCompatActivity {
         emnenavn = intent.getStringExtra("emnenavn");
         emnekode  = intent.getStringExtra("emnekode");
 
-        meny = (ImageButton) findViewById(R.id.meny);
-        home = (ImageButton) findViewById(R.id.home);
-        meny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChoosePerson.this, MenyActivity.class));
-            }
-        });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChoosePerson.this, StudOrAss.class));
-            }
-        });
+
+
 
 
         //Henter ut perosnene fra databasen og legger dem i persons listen

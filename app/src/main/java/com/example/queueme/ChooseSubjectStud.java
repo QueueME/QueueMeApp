@@ -50,20 +50,7 @@ public class ChooseSubjectStud extends Activity {
 
         //inputSearch = (EditText) findViewById(R.id.inputSearch);
 
-        meny = (ImageButton) findViewById(R.id.meny);
-        home = (ImageButton) findViewById(R.id.home);
-        meny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChooseSubjectStud.this, MenyActivity.class));
-            }
-        });
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChooseSubjectStud.this, StudOrAss.class));
-            }
-        });
+
 
 
 
