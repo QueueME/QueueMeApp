@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ public class ChooseSubjectStud extends Activity {
     //private EditText inputSearch;
     ArrayAdapter feedAdapter;
     private Button popup;
+
+    private ImageButton meny, home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,9 @@ public class ChooseSubjectStud extends Activity {
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
 
         //inputSearch = (EditText) findViewById(R.id.inputSearch);
+
+
+
 
 
         //henter ut alle subjects som ligger i databasen og legger i liste
@@ -74,7 +81,7 @@ public class ChooseSubjectStud extends Activity {
 
                 //lager arrayadapter som viser listene
 
-                feedAdapter = new ArrayAdapter(ChooseSubjectStud.this, android.R.layout.simple_list_item_1,subjects);
+               FeedAdapeter_ChooseSubject feedAdapter = new FeedAdapeter_ChooseSubject(ChooseSubjectStud.this, R.layout.list_subjectitem_stud ,subjects);
                 l.setAdapter(feedAdapter);
                 //definerer hva som skjer når man trykker på searchknappen
 

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ public class ChooseSubjectAss extends Activity {
     //private EditText inputSearch;
     ArrayAdapter feedAdapter;
     private Button popup;
+
+    private ImageButton meny, home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,9 @@ public class ChooseSubjectAss extends Activity {
         final ArrayList<Subject> subjects = new ArrayList<Subject>();
 
         //inputSearch = (EditText) findViewById(R.id.inputSearch);
+
+
+
 
 
         //henter ut alle subjects som ligger i databasen og legger i liste

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,7 @@ public class ChoosePerson extends AppCompatActivity {
 
     private String emnekode;
     private String emnenavn;
+    private ImageButton meny, home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,10 @@ public class ChoosePerson extends AppCompatActivity {
         Intent intent = getIntent();
         emnenavn = intent.getStringExtra("emnenavn");
         emnekode  = intent.getStringExtra("emnekode");
+
+
+
+
 
         //Henter ut perosnene fra databasen og legger dem i persons listen
         FirebaseDatabase database = FirebaseDatabase.getInstance();
