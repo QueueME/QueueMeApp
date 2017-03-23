@@ -212,6 +212,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
             moveToDetailIntent.putExtra("emnenavn",emnenavn);
 
             startActivity(moveToDetailIntent);
+            finish();
         }
     }
 }

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -111,10 +112,11 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         myRef2.child(emnekode).child("StudAssList").child(user.getUid()).setValue(persons.get(index));
 
 
-        Intent moveToDetailIntent = new Intent(StartSession.this,MySession.class);
+        Intent moveToDetailIntent = new Intent(StartSession.this,ScreenSlidePagerActivity.class);
         moveToDetailIntent.putExtra("emnekode",emnekode);
         moveToDetailIntent.putExtra("emnenavn",emnenavn);
         startActivity(moveToDetailIntent);
+        finish();
 
     }
 
