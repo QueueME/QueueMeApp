@@ -14,10 +14,9 @@
         android:text="You are now standing in line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:id="@+id/textView2"
         android:textSize="24sp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/emneinfo"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -59,11 +58,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
         android:layout_below="@+id/imageView1"
         android:layout_toRightOf="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp" />
+        android:layout_toEndOf="@+id/textView11" />
 
     <TextView
         android:text="nrinline"
