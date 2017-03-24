@@ -104,6 +104,7 @@ public class InQueue extends AppCompatActivity {
                 }
                 //setter teksten i texview
                 count.setText(""+ linecount()+"");
+                //ifsetning
                 nrinline.setText("" + nrInline() + "");
             }
 
@@ -138,13 +139,14 @@ public class InQueue extends AppCompatActivity {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 Person person = dataSnapshot.getValue(Person.class);
 
-                if (person.getUid()==uid){
+                if (person.getUid() == uid) {
                     startActivity(new Intent(InQueue.this, StudOrAss.class));
                     finish();
-            }
-                fetchDataDelete(dataSnapshot);
+                } else{
+                    fetchDataDelete(dataSnapshot);
                 //setter teksten i texview
-                count.setText(""+ linecount()+"");
+                count.setText("" + linecount() + "");
+            }
             }
 
             @Override

@@ -25,16 +25,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static com.example.queueme.R.id.pager;
 
 
 public class ScreenSlidePagerActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 2;
+    private int NUM_PAGES = 1;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -53,7 +54,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     private String emnenavn;
     private String emnekode;
     private String uid;
-
+    private DatabaseReference ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         emnekode = intent.getStringExtra("emnekode");
 
         // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = (ViewPager) findViewById(pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.addOnPageChangeListener(viewPagerPageChangeListener);
@@ -74,6 +75,8 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         person.setText("There are no person in line");
         nr.setText("0");
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        ref = database.getReference("Subject");
+
         DatabaseReference myRef = database.getReference("Subject");
         final DatabaseReference myRef2 = database.getReference("Subject");
 
@@ -128,17 +131,22 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         myRef.child(emnekode).child("StudAssList").child(uid).child("Queue").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                NUM_PAGES+=1;
+                mPagerAdapter.notifyDataSetChanged();
+
                 //henter data og legger til personen som addes til listen over
                 fetchData(dataSnapshot);
                 //setter tekst i textviewene
-                int studentsnr= students.size();
-                nr.setText(String.valueOf(studentsnr));
+                //int studentsnr= students.size();
+                nr.setText(String.valueOf(linecount()));
 
                 if (!students.isEmpty()){
                     String uid= students.get(0).getUid();
-
+                    Person person = dataSnapshot.getValue(Person.class);
+                    TextView firstperson = (TextView) findViewById(R.id.person);
+                    firstperson.setText(person.getName()+ " are next in line");
                     //finner navnet på første i kø i persondata i persondatabasen
-                    DatabaseReference personRef = database.getReference("Person");
+                   /* DatabaseReference personRef = database.getReference("Person");
                     personRef.child(uid).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -153,8 +161,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
-                    });
-
+                    });*/
                 }else{
                     TextView firstperson = (TextView) findViewById(R.id.person);
                     firstperson.setText("no one in line");
@@ -170,20 +177,32 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
+                NUM_PAGES-=1;
+                mPagerAdapter.notifyDataSetChanged();
                 //henter ut personene som slettes og sletter han fra listen
-                fetchDataDelete(dataSnapshot);
-                //oppdatere texviewene
-                int studentsnr= students.size();
-                nr.setText("0");
+                Person person = dataSnapshot.getValue(Person.class);
+                for (Person personinlist:students){
+                    if (person.getUid()==personinlist.getUid()){
+                        //nr.setText(String.valueOf(students.indexOf(personinlist)));
+                        students.remove(students.indexOf(personinlist));
+                    }else{
 
-                /*//if (!students.isEmpty()){
-                    String student= students.get(0).getEmail();
+                    }
+                }
+                nr.setText(String.valueOf(linecount()));
+
+
+                //fetchDataDelete(dataSnapshot);
+                //oppdatere texviewene
+
+
+                if (!students.isEmpty()) {
                     TextView firstperson = (TextView) findViewById(R.id.person);
-                    firstperson.setText(student + " are next in line");
-                */
+                    firstperson.setText(students.get(0).getName() + " are next in line");
+                }else {
                     TextView firstperson = (TextView) findViewById(R.id.person);
                     firstperson.setText("no one in line");
-
+                }
 
             }
 
@@ -201,9 +220,21 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
 
     }
+    private void removePerson(DatabaseReference ref,String puid){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        ref.child(emnekode).child("StudAssList").child(user.getUid()).child("Queue").child(puid).removeValue();
+
+    }
+    void updatePageCount(ViewPager viewPager) {
+        int currentItem = mPager.getCurrentItem();
+        mPager.setAdapter(mPager.getAdapter());
+        mPager.setCurrentItem(currentItem);
+    }
     private void removeQueue(DatabaseReference ref){
-        ref.child(emnekode).child("StudAssList").child(uid).removeValue();
+
         startActivity(new Intent(ScreenSlidePagerActivity.this, StudOrAss.class));
+        ref.child(emnekode).child("StudAssList").child(uid).removeValue();
         finish();
     }
     private void fetchData(DataSnapshot dataSnapshot)
@@ -216,12 +247,13 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     {
         //students.clear();
         Person person = dataSnapshot.getValue(Person.class);
-        //MÅ LEGGE TIL SLIK AT DENNE PERSONEN FJERNER SEG
+        students.remove(0);
+
 
     }
 
     private int linecount() {
-        return students.size()-1;
+        return students.size();
     }
 
     @Override
@@ -244,12 +276,21 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         @Override
         public void onPageSelected(int position) {
             Toast.makeText(ScreenSlidePagerActivity.this, "NEXT",Toast.LENGTH_SHORT).show();
-            //mPager.removeViewAt(0);
-            //mPagerAdapter.notifyDataSetChanged();
-            students.remove(0);
-            person.setText("There are no one in line");
-            nr.setText("0");
 
+            if (!students.isEmpty()) {
+                removePerson(ref,students.get(0).getUid());
+                students.remove(0);
+                if(!students.isEmpty()) {
+                    person.setText(students.get(0).getName() + " is next in line");
+                }else{
+                    person.setText("There are no one in your line");
+                }
+                nr.setText(String.valueOf(linecount()));
+            }else{
+
+            }
+
+            //kan override getcount()???
         }
 
         @Override
