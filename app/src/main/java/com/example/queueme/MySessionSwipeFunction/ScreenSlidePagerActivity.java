@@ -132,7 +132,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 fetchData(dataSnapshot);
                 //setter tekst i textviewene
                 int studentsnr= students.size();
-                nr.setText("the line has "+String.valueOf(studentsnr));
+                nr.setText(String.valueOf(studentsnr));
 
                 if (!students.isEmpty()){
                     String uid= students.get(0).getUid();
@@ -174,7 +174,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 fetchDataDelete(dataSnapshot);
                 //oppdatere texviewene
                 int studentsnr= students.size();
-                nr.setText("the line has "+String.valueOf(studentsnr));
+                nr.setText(String.valueOf(studentsnr));
 
                 if (!students.isEmpty()){
                     String student= students.get(0).getEmail();
@@ -183,6 +183,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 }else{
                     TextView firstperson = (TextView) findViewById(R.id.person);
                     firstperson.setText("no one in line");
+
                 }
 
             }
@@ -216,7 +217,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     {
         //students.clear();
         Person person = dataSnapshot.getValue(Person.class);
-        //MÅ LEGGE TIL SLIK AT DENNE PERSONEN FJERNER SEG
+        students.remove(person);//MÅ LEGGE TIL SLIK AT DENNE PERSONEN FJERNER SEG
 
     }
 
@@ -246,8 +247,15 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
             Toast.makeText(ScreenSlidePagerActivity.this, "YYOYUIO",Toast.LENGTH_SHORT).show();
             //mPager.removeViewAt(0);
             //mPagerAdapter.notifyDataSetChanged();
-            students.remove(0);
-            person.setText(students.get(0).getName());
+            if (!students.isEmpty()){
+                students.remove(0);
+                person.setText(students.get(0).getName());
+            }
+            if (students.isEmpty()){
+                person.setText("No one in line");
+            }
+
+
             nr.setText(String.valueOf(linecount()));
 
         }

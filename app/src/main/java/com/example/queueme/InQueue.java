@@ -161,9 +161,9 @@ public class InQueue extends AppCompatActivity {
     }
 private void removeQueue(DatabaseReference ref){
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-    ref.child(emnekode).child("StudAssList").child(personuid).child("Queue").child(user.getUid()).removeValue();
     startActivity(new Intent(InQueue.this, StudOrAss.class));
+    ref.child(emnekode).child("StudAssList").child(personuid).child("Queue").child(user.getUid()).removeValue();
+
     finish();
 }
     private void fetchData(DataSnapshot dataSnapshot) {
@@ -179,7 +179,7 @@ private void removeQueue(DatabaseReference ref){
     }
 
     private int linecount() {
-        return students.size();
+        return students.size()-1;
     }
 
     private int nrInline() {

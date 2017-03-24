@@ -187,6 +187,22 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference personRef = database.getReference("Person");
+        personRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Person person = dataSnapshot.getValue(Person.class);
+                String firstInLineName = person.getName();
+                myName=firstInLineName;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -214,9 +230,14 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         String email=user.getEmail();
         String uid=user.getUid();
         //skriver til databse
+        Person person = new Person();
+        person.setName(myName);
+        person.setEmail(email);
+        person.setUid(uid);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-        myRef.child("Subject").child(emnekode).child("StudAssList").child(personuid).child("Queue").child(uid).setValue(user);
+        myRef.child("Subject").child(emnekode).child("StudAssList").child(personuid).child("Queue").child(uid).setValue(person);
 
     }
 
