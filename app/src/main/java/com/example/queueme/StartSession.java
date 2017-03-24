@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
@@ -33,12 +34,31 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
     private ArrayList<Person> persons = new ArrayList<Person>();
     private Person Me;
+    private ImageButton meny;
+    private ImageButton home;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_session);
+        setContentView(R.layout.startsession);
+
+        meny = (ImageButton) findViewById(R.id.meny);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartSession.this, MenyActivity.class));
+
+            }
+        });
+        home = (ImageButton) findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartSession.this, StudOrAss.class));
+
+            }
+        });
         //henter brukerens info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         myUID=user.getUid();

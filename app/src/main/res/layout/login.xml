@@ -16,8 +16,13 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="227dp" />
+        android:layout_marginTop="19dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.627" />
 
     <EditText
         android:id="@+id/password"
@@ -27,8 +32,12 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="285dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/email"
+        app:layout_constraintLeft_toRightOf="@+id/imageView13"
+        android:layout_marginLeft="0dp" />
 
     <Button
         android:id="@+id/btn_login"
@@ -36,8 +45,12 @@
         android:layout_height="wrap_content"
         android:background="@color/btn_logut_bg"
         android:text="Login"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="343dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/password"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView14" />
 
     <Button
         android:id="@+id/btn_reset_password"
@@ -47,8 +60,12 @@
         android:background="@color/colorPrimaryDark"
         android:text="forgot your password?"
         android:textColor="@color/common_google_signin_btn_text_light_focused"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="399dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/btn_login"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_login" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -57,31 +74,64 @@
         android:layout_height="wrap_content"
         android:text="Not registrerd?"
         android:textColor="@color/btn_logut_bg"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="452dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reset_password"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_reset_password"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/btn_reset_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintVertical_bias="0.107" />
 
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:srcCompat="@drawable/lock"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/mail"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="227dp" />
+        app:layout_constraintTop_toTopOf="@+id/email"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/email"
+        android:layout_marginRight="0dp" />
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:srcCompat="@drawable/key2"
-        tools:layout_editor_absoluteY="285dp"
-        tools:layout_editor_absoluteX="81dp" />
+        app:layout_constraintTop_toTopOf="@+id/password"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView13"
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        android:layout_marginBottom="0dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/btn_signup"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_signup"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
 
 </android.support.constraint.ConstraintLayout>

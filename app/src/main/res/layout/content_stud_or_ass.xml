@@ -63,13 +63,13 @@
         android:id="@+id/btnstud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/or"
-        android:layout_marginTop="33dp"
-        android:layout_toEndOf="@+id/imageView2"
-        android:layout_toRightOf="@+id/imageView2"
+        android:layout_marginTop="11dp"
         android:background="@android:color/background_light"
         android:text="Student"
-        android:textColor="@color/bg_screen3" />
+        android:textColor="@color/bg_screen3"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"

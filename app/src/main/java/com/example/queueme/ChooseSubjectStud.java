@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,11 +31,29 @@ public class ChooseSubjectStud extends Activity {
     //private EditText inputSearch;
     ArrayAdapter feedAdapter;
     private Button popup;
+    private ImageButton meny;
+    private ImageButton home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coose_subject_ass);
+        setContentView(R.layout.choose_subject);
 
+        meny = (ImageButton) findViewById(R.id.meny);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseSubjectStud.this, MenyActivity.class));
+
+            }
+        });
+        home = (ImageButton) findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseSubjectStud.this, StudOrAss.class));
+
+            }
+        });
         //finer listview og setter som variabel
         final ListView l=(ListView) findViewById(R.id.listview);
         //finner buttons

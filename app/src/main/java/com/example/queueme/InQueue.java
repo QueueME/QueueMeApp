@@ -35,7 +35,7 @@ public class InQueue extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_queue);
+        setContentView(R.layout.inqueue);
 
 
         //henter info fra forrige activity

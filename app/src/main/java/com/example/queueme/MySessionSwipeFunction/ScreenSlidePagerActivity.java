@@ -57,7 +57,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen_slide);
+        setContentView(R.layout.screenslide);
 
         Intent intent = getIntent();
         emnenavn = intent.getStringExtra("emnenavn");

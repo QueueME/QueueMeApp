@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,11 +41,29 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     //private int queuenr;
     //private TextView antall;
     private Button queue;
+    private ImageButton meny;
+    private ImageButton home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailed);
+        setContentView(R.layout.sessioninfo);
 
+        meny = (ImageButton) findViewById(R.id.meny);
+        meny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailedActivity.this, MenyActivity.class));
+
+            }
+        });
+        home = (ImageButton) findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailedActivity.this, StudOrAss.class));
+
+            }
+        });
         //TextView antall=(TextView) findViewById(R.id.antall);
 
         queue = (Button) findViewById(R.id.queue);

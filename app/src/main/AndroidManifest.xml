@@ -19,15 +19,12 @@
         <activity android:name=".AddSubject" />
         <activity android:name=".ChoosePerson" />
         <activity android:name=".MySessionSwipeFunction.ScreenSlidePagerActivity" />
-
         <activity
             android:name=".DetailedActivity"
-            android:label="@string/title_activity_detailed"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_detailed" />
         <activity
             android:name=".StudOrAss"
-            android:label="@string/title_activity_stud_or_ass"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_stud_or_ass" />
         <activity
             android:name=".ChooseSubjectAss"
             android:windowSoftInputMode="stateHidden" />
@@ -46,7 +43,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".MenyActivity" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Beginning"></activity>
     </application>
 
 </manifest>
