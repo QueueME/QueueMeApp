@@ -2,11 +2,11 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
-    android:background="@drawable/subject_background"
-    >
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/imageView1"
@@ -19,31 +19,29 @@
 
 
     <TextView
-        android:text="@string/add_subject"
-        android:layout_gravity="center"
+        android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:textSize="25dp"
+        android:layout_gravity="center"
         android:layout_weight="0.06"
+        android:text="@string/add_subject"
         android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="25dp"
         android:textStyle="normal|bold" />
 
     <EditText
+        android:id="@+id/inputSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/inputSearch"
         android:hint="@string/search_in_database"
-        android:layout_weight="0.06"
-        android:textColorLink="@color/bg_screen3"
-      />
+        android:inputType="textPersonName" />
 
     <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="103dp"
-        android:id="@+id/listview"
         android:layout_weight="0.07" />
 
     <Button
@@ -51,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.05"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/btn_logut_bg"
         android:text="Finished"
         android:textColor="@color/common_google_signin_btn_text_dark_default" />
 

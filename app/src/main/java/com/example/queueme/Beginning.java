@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
-
 public class Beginning extends AppCompatActivity {
     private Button login;
     private Button reg;
@@ -17,10 +15,10 @@ public class Beginning extends AppCompatActivity {
         setContentView(R.layout.intro);
 
         login=(Button) findViewById(R.id.login);
-        login=(Button) findViewById(R.id.reg);
+        reg=(Button) findViewById(R.id.reg);
         //swipe=(Button) findViewById(R.id.swipe);
 
-        reg.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Beginning.this, LoginActivity.class));

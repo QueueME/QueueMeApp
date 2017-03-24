@@ -30,6 +30,7 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
     private TextView subjectinfo;
     private TextView availible_until;
     private TextView count;
+    private TextView subnavn;
     private ArrayList<Person> persons = new ArrayList<Person>();
     private ArrayList<Person> studasses = new ArrayList<Person>();
     private Person studAss;
@@ -89,7 +90,9 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
 
 
         subjectinfo = (TextView) findViewById(R.id.subjectinfo);
-        subjectinfo.setText(emnekode + " " +emnenavn);
+        subjectinfo.setText(emnekode);
+        subnavn=(TextView) findViewById(R.id.subnavn);
+        subnavn.setText(emnenavn);
 
         availible_until = (TextView) findViewById(R.id.avilible_until);
 

@@ -5,10 +5,13 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/warning" />
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:src="@drawable/warning" />
 
     <TextView
         android:text="WARNING!"
