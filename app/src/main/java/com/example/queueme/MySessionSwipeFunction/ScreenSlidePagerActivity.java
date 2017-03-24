@@ -34,7 +34,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 2;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -132,7 +132,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 fetchData(dataSnapshot);
                 //setter tekst i textviewene
                 int studentsnr= students.size();
-                nr.setText("the line has "+String.valueOf(studentsnr));
+                nr.setText(String.valueOf(studentsnr));
 
                 if (!students.isEmpty()){
                     String uid= students.get(0).getUid();
@@ -174,16 +174,16 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 fetchDataDelete(dataSnapshot);
                 //oppdatere texviewene
                 int studentsnr= students.size();
-                nr.setText("the line has "+String.valueOf(studentsnr));
+                nr.setText("0");
 
-                if (!students.isEmpty()){
+                /*//if (!students.isEmpty()){
                     String student= students.get(0).getEmail();
                     TextView firstperson = (TextView) findViewById(R.id.person);
                     firstperson.setText(student + " are next in line");
-                }else{
+                */
                     TextView firstperson = (TextView) findViewById(R.id.person);
                     firstperson.setText("no one in line");
-                }
+
 
             }
 
@@ -221,7 +221,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     }
 
     private int linecount() {
-        return students.size();
+        return students.size()-1;
     }
 
     @Override
@@ -243,12 +243,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         @Override
         public void onPageSelected(int position) {
-            Toast.makeText(ScreenSlidePagerActivity.this, "YYOYUIO",Toast.LENGTH_SHORT).show();
+            Toast.makeText(ScreenSlidePagerActivity.this, "NEXT",Toast.LENGTH_SHORT).show();
             //mPager.removeViewAt(0);
             //mPagerAdapter.notifyDataSetChanged();
             students.remove(0);
-            person.setText(students.get(0).getName());
-            nr.setText(String.valueOf(linecount()));
+            person.setText("There are no one in line");
+            nr.setText("0");
 
         }
 

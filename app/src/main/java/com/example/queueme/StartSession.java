@@ -36,6 +36,7 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
     private Person Me;
     private ImageButton meny;
     private ImageButton home;
+    private String myName;
 
 
     @Override
@@ -102,7 +103,20 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
                 }
         });
 
+        DatabaseReference personRef = database.getReference("Person");
+        personRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Person person = dataSnapshot.getValue(Person.class);
+                String firstInLineName = person.getName();
+                myName=firstInLineName;
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
     }
@@ -116,20 +130,19 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        int index=0;
-        for (Person person : persons) {
-            if (person.getUid() == user.getUid()) {
-                index = persons.indexOf(person);
-            }
-        }
+
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Person");
-        myRef.child(persons.get(index).getUid()).child("time_to_stop").setValue( time.getText().toString());
-        persons.get(index).setTime_to_stop(time.getText().toString());
+        myRef.child(user.getUid()).child("time_to_stop").setValue( time.getText().toString());
+        Person person = new Person();
+        person.setTime_to_stop(time.getText().toString());
+        person.setName(myName);
+        person.setEmail(user.getEmail());
+        person.setUid(user.getUid());
         DatabaseReference myRef2 = database.getReference("Subject");
-        myRef2.child(emnekode).child("StudAssList").child(user.getUid()).setValue(persons.get(index));
+        myRef2.child(emnekode).child("StudAssList").child(user.getUid()).setValue(person);
 
 
         Intent moveToDetailIntent = new Intent(StartSession.this,ScreenSlidePagerActivity.class);

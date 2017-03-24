@@ -22,14 +22,14 @@ public class Beginning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Beginning.this, LoginActivity.class));
-                finish();
+
             }
         });
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Beginning.this, SignupActivity.class));
-                finish();
+
             }
         });
         //swipe.setOnClickListener(this);

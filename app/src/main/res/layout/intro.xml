@@ -12,16 +12,24 @@
         android:layout_height="wrap_content"
         android:text="Welcome to QueueMe"
         android:textColor="@android:color/background_light"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="160dp" />
+        android:layout_marginTop="47dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/text"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="42dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/login"
@@ -31,8 +39,12 @@
         android:background="@color/btn_logut_bg"
         android:text="Login"
         android:textColor="@android:color/background_light"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="272dp" />
+        android:layout_marginTop="88dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/reg"
@@ -42,6 +54,13 @@
         android:background="@color/btn_logut_bg"
         android:text="Registrer"
         android:textColor="@android:color/background_light"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="345dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.092" />
 </android.support.constraint.ConstraintLayout>
