@@ -8,65 +8,6 @@
 
 
     <!-- activity_screen_slide.xml -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Your Queue"
-            android:textColor="@android:color/background_light"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/homee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/home"
-            app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/home" />
-
-        <ImageButton
-            android:id="@+id/meny"
-            android:layout_width="49dp"
-            android:layout_height="53dp"
-            app:srcCompat="@drawable/menu"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="29dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.444" />
-
-    </android.support.constraint.ConstraintLayout>
 
 
     <TextView
@@ -139,7 +80,7 @@
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:background="@color/btn_logut_bg"
+        android:background="@color/colorPrimaryDark"
         android:text="End queue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -157,12 +98,18 @@
         android:layout_marginTop="45dp" />
 
     <Button
-        android:id="@+id/Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="-14dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/btn_logut_bg"
         android:text="Button"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="475dp" />
+        app:layout_constraintBottom_toTopOf="@+id/end"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

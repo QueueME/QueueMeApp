@@ -91,7 +91,7 @@ public class InQueue extends AppCompatActivity {
 
 
         //henter ut alle som er i lsiten og legger dem i vår liste. Dette er fordi childeventlistener ikke kjøres i starten, og vi trenger listen med en gang.
-        myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addValueEventListener(new ValueEventListener() {
+        myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 students.clear();
