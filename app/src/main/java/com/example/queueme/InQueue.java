@@ -94,6 +94,7 @@ public class InQueue extends AppCompatActivity {
         myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                students.clear();
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child: children){
                     Person person = child.getValue(Person.class);
@@ -185,7 +186,7 @@ private void removeQueue(DatabaseReference ref){
     }
 
     private int nrInline() {
-        int index=10000;
+        int index=0;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         for (Person person : students) {

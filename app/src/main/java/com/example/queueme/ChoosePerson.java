@@ -59,6 +59,7 @@ public class ChoosePerson extends AppCompatActivity {
         myRef.child("Subject").child(emnekode).child("StudAssList").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                persons.clear();
                 //get all of the children of this level.
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 

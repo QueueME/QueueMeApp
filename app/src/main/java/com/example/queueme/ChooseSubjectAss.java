@@ -82,6 +82,7 @@ public class ChooseSubjectAss extends Activity {
         myRef.child("Person").child(user.getUid()).child("FavoriteAssSubject").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                subjects.clear();
                 //get all of the children of this level.
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
