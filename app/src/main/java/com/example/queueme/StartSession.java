@@ -2,11 +2,13 @@ package com.example.queueme;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
@@ -34,8 +36,8 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
     private ArrayList<Person> persons = new ArrayList<Person>();
     private Person Me;
-    private ImageButton meny;
-    private ImageButton home;
+    private Button meny;
+    private Button home;
     private String myName;
 
 
@@ -44,7 +46,18 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.startsession);
 
-        meny = (ImageButton) findViewById(R.id.meny);
+        Window window = StartSession.this.getWindow();
+
+// clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(StartSession.this,R.color.btn_logut_bg));
+
+        meny = (Button) findViewById(R.id.meny);
         meny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +65,7 @@ public class StartSession extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        home = (ImageButton) findViewById(R.id.home);
+        home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

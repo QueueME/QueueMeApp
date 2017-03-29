@@ -182,7 +182,7 @@ private void removeQueue(DatabaseReference ref){
     }
 
     private int linecount() {
-        return students.size()-1;
+        return students.size();
     }
 
     private int nrInline() {

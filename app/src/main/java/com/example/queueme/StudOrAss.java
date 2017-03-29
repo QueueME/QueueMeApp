@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.queueme.MySessionSwipeFunction.ScreenSlidePagerActivity;
 
@@ -14,8 +13,8 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
     private Button btnass;
     private Button btnstud;
     private Button swipe;
-    private ImageButton meny;
-    private ImageButton home;
+    private Button meny;
+    private Button home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +29,9 @@ public class StudOrAss extends AppCompatActivity implements View.OnClickListener
         btnstud.setOnClickListener(this);
         //swipe.setOnClickListener(this);
 
-        meny = (ImageButton) findViewById(R.id.meny);
+        meny = (Button) findViewById(R.id.meny);
         meny.setOnClickListener(this);
-        home = (ImageButton) findViewById(R.id.homee);
+        home = (Button) findViewById(R.id.home);
         home.setOnClickListener(this);
 
     }
