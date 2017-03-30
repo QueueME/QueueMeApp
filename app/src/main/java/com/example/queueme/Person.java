@@ -12,6 +12,16 @@ public class Person {
     private String uid;
     private String time_to_stop;
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    private String timestamp;
+
 
 
 

@@ -231,6 +231,9 @@ public class DetailedActivity extends AppCompatActivity implements View.OnClickL
         person.setEmail(user.getEmail());
         person.setName(myName);
         person.setUid(user.getUid());
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        person.setTimestamp(ts);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         myRef.child("Subject").child(emnekode).child("StudAssList").child(personuid).child("Queue").child(uid).setValue(person);

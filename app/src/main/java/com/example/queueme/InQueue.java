@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
 
 public class InQueue extends AppCompatActivity {
     private String email;
@@ -31,11 +33,11 @@ public class InQueue extends AppCompatActivity {
     private ArrayList<Person> students = new ArrayList<Person>();
     private Button end;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inqueue);
+
 
 
         //henter info fra forrige activity
@@ -74,7 +76,7 @@ public class InQueue extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         removeQueue(myRef2);
-                        dialog.dismiss();
+
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +93,7 @@ public class InQueue extends AppCompatActivity {
 
 
         //henter ut alle som er i lsiten og legger dem i vår liste. Dette er fordi childeventlistener ikke kjøres i starten, og vi trenger listen med en gang.
-        myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addValueEventListener(new ValueEventListener() {
+        myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").orderByChild("timestamp").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 students.clear();
@@ -107,6 +109,8 @@ public class InQueue extends AppCompatActivity {
                 count.setText(""+ linecount()+"");
                 //ifsetning
                 nrinline.setText("" + nrInline() + "");
+                Toast.makeText(InQueue.this, "Master",
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -119,20 +123,31 @@ public class InQueue extends AppCompatActivity {
         myRef.child(emnekode).child("StudAssList").child(personuid).child("Queue").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                Long tsLong = System.currentTimeMillis()/1000;
+                String ts = tsLong.toString();
+                Toast.makeText(InQueue.this, ts,
+                        Toast.LENGTH_SHORT).show();
                 //henter elementer som ble lagt til
-                fetchData(dataSnapshot);
+               /* Person person = dataSnapshot.getValue(Person.class);
+
+                if (!(person.getUid() == uid)) {
+                    students.add(person);
+
+                }
+
                 //setter teksten i texview
                 count.setText(""+ linecount()+"");
                 //hvis vi plutselig er først i kø skal vi få beskjed
                 if (nrInline() == 0) {
                     nrinline.setText("ITS YOUR TURN");
                     //bytte layoutfarge og lage et checkmerke
-                }
+                }*/
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                fetchDataDelete(dataSnapshot);
+                //fetchDataDelete(dataSnapshot);
 
             }
 
@@ -144,9 +159,9 @@ public class InQueue extends AppCompatActivity {
                     startActivity(new Intent(InQueue.this, StudOrAss.class));
                     finish();
                 } else{
-                    fetchDataDelete(dataSnapshot);
+                 //   fetchDataDelete(dataSnapshot);
                 //setter teksten i texview
-                count.setText("" + linecount() + "");
+               // count.setText("" + linecount() + "");
             }
             }
 
